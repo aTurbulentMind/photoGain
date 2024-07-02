@@ -1,0 +1,62 @@
+:root{
+    // spacing
+    --pad_sm: 0.25rem;
+    --pad: 0.75rem;
+    --pad_xl: 1.5rem;
+    --pad_xxl: 2rem;
+
+    --gap_sm:10px;
+    --gap:20px;
+    --gap_lg:30px;
+
+    //Margin
+    --marg_sm: 0.5rem ;
+    --marg: 0.75rem ;
+    --marg_xl: 1.5rem ;
+    --marg_xxl: 2rem ;
+    --marg_xxxl: 3rem ;
+
+    //block spacing
+    --lrg_marg: 10% 20%;
+    --full_blk: 5vw 5vh;
+    --half_marg:15% 8%;
+    --qtr_marg: 8%;
+
+    // borders
+    --thick: 1px ;
+    --rad: 10px ;
+    --bord: 4px solid var(--extra);
+
+    // shadow
+    --box_Shadow: 6px 6px 22px  hsl(233, 80%, 4%);
+    --box_Light: 6px 6px 22px  hsl(209, 86%, 66%);
+    
+    --text_Shadow:2px 6px 15px hsl(56, 80%, 4%);
+    --text_Light:2px 2px 2px hsl(209, 86%, 66%);
+
+    //opacity
+    --op_t:0.25;
+    --op_m:0.5;
+    --op_s:0.75;
+
+    // font sizes
+    --f_xsm:0.25rem;
+    --f_sm: 0.75rem;
+    --font: 1rem;
+    --f_m:1.25rem;
+    --f_lg: 1.5rem;
+    --f_xl: 2rem;
+    --f_xxl: 3rem;
+    --f_xxxl: 5rem;
+
+    //font stack
+    --font_Main: "DotGothic16", sans-serif;
+    --font_Alt:"Atomic Age", system-ui;
+    --font_Tre:"Special Elite", system-ui;
+    --font_Quad: "Audiowide", sans-serif;
+
+
+    //transit/ani
+    --tSpeed: 0.3s;
+}
+

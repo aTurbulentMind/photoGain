@@ -1,0 +1,323 @@
+//grids
+.grid{
+    display: grid;
+    align-items: center;
+    grid-template-rows: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    margin: 0 5%;
+    margin-top: 10vh;
+	border-radius: var(--rad);
+
+    .card {
+        padding: 15px;
+        margin: 0 7%;
+        border-radius: var(--rad);
+		box-shadow: var(--box_Shadow);
+
+        .card-title {
+				font-size: var(--f_lg);
+				padding: var(--pad);
+			}
+
+        .body {
+            font-size: var(--font);
+            }
+
+            @media (min-width: 780px) {
+                    padding: 20px;
+                    margin: 0 12%;
+        }
+    }
+    @media (min-width: 780px) {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--pad_xxl);
+
+                svg {
+            width: 60%;
+            margin: 0 20%;
+        }
+    }
+
+    @media (min-width: 980px) {
+		.grid {
+			.card {
+				.body {
+					font-size: var(--f_m);
+				}
+			}
+		}
+    }
+}
+
+.add-ons {
+		display: grid;
+        grid-template-columns: 1fr;
+		list-style-type: none;
+		width: 80vw;
+		margin: 2vw 10vw;
+
+		li {
+			background-color: var(--back_Alt);
+			border: var(--bord);
+			border-radius: var(--rad);
+			font-size: var(--f_lg);
+			cursor: pointer;
+			width: fit-content;
+			padding: 1%;
+			margin: 2vh auto;
+			height: fit-content;
+
+            
+        button {
+			background: transparent;
+			border: none;
+			font-size: var(--f_m);
+			color: var(--back_Main);
+            padding: 0;
+		}
+
+			p {
+				font-size: var(--font);
+				padding: 0;
+				margin: 5% 0;
+				cursor: default;
+			}
+
+        .selected {
+			border-radius: var(--rad);
+			background-color: var(--back_Main);
+			color: var(--text_Main);
+		}
+
+		.unselected {
+			height: fit-content;
+		}
+		}
+
+		.hidden {
+			display: none;
+		}
+
+        @media only screen and (min-width: 780px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media only screen and (min-width: 1080px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        	@media only screen and (min-width: 1280px) {
+                .selected{
+                    font-size: var(--f_xl);
+                    p{
+                        font-size: var(--f_m);
+                    }
+                }
+            }
+	}
+
+
+//blurred background
+.glass_Back{
+    background: var(--back_Hallow);
+    color: var(--back_Main);
+    box-shadow: var(--box-Shadow);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: var(--rad);
+    border: var(--thick) solid var(--grabber);
+    height: fit-content;
+    width: fit-content;
+    padding: var(--pad);
+}
+
+
+
+   /* Define the color variables to match Windows 95 theme */
+    :root {
+		--win95-background: hwb(210 76% 20%);
+		--win95-border-light: hwb(234 96% 0%);
+		--win95-border-dark: hwb(241 3% 39%);
+		--win95-border-medium: hwb(0 65% 35%);
+		--win95-text: hwb(240 0% 97%);
+        --win95-border-width: 2px;
+
+        --win95-Fade:linear-gradient(to right, var(--win95-border-dark), var(--win95-border-medium))
+
+        --win95-padding: 10px;
+        --pad_sm: 5px;
+        --marg_xl: 10px;
+    }
+
+.win_95 {
+        background: var(--win95-background);
+        color: var(--win95-text);
+        border: var(--win95-border-width) solid var(--win95-text);
+        border-top-color: var(--win95-border-light);
+        border-left-color: var(--win95-border-light);
+		width: 80vw;
+		margin-left: 10vw;
+        font-size: var(--f_m);
+        line-height: 1.5;
+        position: relative;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+        padding: var(--pad);
+
+    .title-bar {
+        background: linear-gradient(to right, var(--win95-border-dark), var(--back_Other));
+        color: var(--win95-border-light);
+        padding:0 5px;
+        margin: -3%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        border-bottom: var(--win95-border-width) solid var(--win95-Fade);
+
+        .title-bar-text {
+            padding: var(--pad);
+            letter-spacing: 3px;
+    }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 5px;
+
+            button {
+                background: var(--win95-background);
+                border: var(--win95-border-width) solid var(--win95-text);
+                border-top-color: var(--win95-border-light);
+                border-left-color: var(--win95-border-light);
+                width: 30px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: var(--f_m);
+                padding: auto;
+                font-weight: bold;
+                cursor: pointer;
+    }
+    }
+    }
+
+        .window-content {
+            p {
+                font-size: var(--f_m);
+                margin:-15% 15% 0 15%;
+                text-shadow: none;
+            }
+
+        .win_95_butt {
+            background: var(--win95-background);
+            border: var(--win95-border-width) solid var(--win95-text);
+            border-top-color: var(--win95-border-light);
+            border-left-color: var(--win95-border-light);
+            color: var(--win95-text);
+            padding: 5px 10px;
+            margin: 0 15%;
+            position:center;
+            cursor: pointer;
+            font-size: var(--f_m);
+    }
+
+        .win_95_butt:hover {
+        border-color: var(--win95-border-medium);
+    }
+    }
+}
+
+//Cards
+.indi_card {
+    display: block;
+    height: fit-content;
+    margin: var(--marg_xxl);
+    padding: var(--pad);
+    box-shadow: var(--mainShadow);
+    border-radius: var(--rad);
+    background: var(--backHallow);
+
+    .card-title {
+        font-size: var(--font);
+        font-weight: bold;
+    }
+
+    .card-body {
+        font-size: var(--f-sm);
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    @media (min-width: 991px) {
+        .card-body {
+            font-size: var(--font);
+            }
+        }
+}
+
+
+//text blocks
+.text_Block {
+		height: fit-content;
+		width: 100vw;
+
+	.text_Box {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: var(--font);
+			margin: var(--qtr_marg);
+			gap: 3px;
+	}
+
+        	@media only screen and (min-width: 980px) {
+                
+		.text_Box {
+			font-size: var(--f_lg);
+			margin: var(--full_marg);
+            padding: 2vh 5vw;
+			gap: 8px;
+		}
+
+        .cut_Box{
+            			padding: 2vh 10vw;
+        }
+	}
+	}
+
+
+//Buttons
+.butts {
+    width: fit-content;
+    margin: var(--marg);
+    padding: var(--pad_sm);
+    background: rgba(15, 17, 15, 0.616);
+    color: var(--text_Main);
+    text-transform: uppercase;
+    font-weight: 100;
+    border: var(--bord);
+    border-radius: var(--rad);
+    transition: all var(--tSpeed) ease-in-out;
+
+        &:hover {
+        transition: all var(--tSpeed) ease-in-out;
+        background: var(--grabber);
+        color: var(--backMain);
+        box-shadow: var(--box_Shadow);
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    @media (min-width: 780px) {
+        margin: 0 25%;
+    }
+}
+
+//Highlights
+.alt_Color {
+        background-color: var(--extra);
+		color: var(--back_Main);
+	}
