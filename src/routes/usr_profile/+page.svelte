@@ -92,7 +92,7 @@
 
 			if (imagesData && imagesData.length > 0) {
 				images = imagesData.map((file, index) => {
-					const publicURL = `https://adgdwehuxdddcwmfhudx.supabase.co/storage/v1/object/public/Gallery/${form.text_name}/${file.name}`;
+					const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${form.text_name}/${file.name}`;
 					return { id: index, url: publicURL };
 				});
 			} else {

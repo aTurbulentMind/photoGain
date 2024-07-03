@@ -4,7 +4,7 @@
 
 	let images = [];
 	let showModal = false;
-	let selectedGallery = null;
+	let selectedGallery = 'neonDreams';
 	let selectedGalleryImages = [];
 
 	async function fetchImages() {
@@ -29,7 +29,7 @@
 						}
 
 						if (files && files.length > 0) {
-							const publicURL = `https://adgdwehuxdddcwmfhudx.supabase.co/storage/v1/object/public/Gallery/${folder.name}/${files[0].name}`;
+							const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${folder.name}/${files[0].name}`;
 							console.log(
 								`Generated public URL for ${files[0].name} in folder ${folder.name}: ${publicURL}`
 							);
@@ -64,7 +64,7 @@
 
 			if (data && data.length > 0) {
 				selectedGalleryImages = data.map((file) => {
-					const publicURL = `https://adgdwehuxdddcwmfhudx.supabase.co/storage/v1/object/public/Gallery/${galleryName}/${file.name}`;
+					const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${galleryName}/${file.name}`;
 					console.log(`Generated public URL for ${file.name}: ${publicURL}`);
 					return publicURL;
 				});
