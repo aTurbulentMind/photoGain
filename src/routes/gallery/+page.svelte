@@ -1,56 +1,18 @@
 <script>
-	import { onMount } from 'svelte';
-	import { supabase } from '$lib/supabaseClient';
+	export let images = [];
 
-	let images = [];
+	console.log('Initial images:', images);
+
 	let showModal = false;
-	let selectedGallery = 'neonDreams';
+	let selectedGallery = '';
 	let selectedGalleryImages = [];
 
-	async function fetchImages() {
-		try {
-			console.log('Fetching gallery folders from Supabase storage...');
-			const { data: folders, error: folderError } = await supabase.storage.from('Gallery').list('');
-
-			if (folderError) {
-				console.error('Error fetching folders:', folderError.message);
-				return;
-			}
-
-			if (folders && folders.length > 0) {
-				images = await Promise.all(
-					folders.map(async (folder) => {
-						const { data: files, error: fileError } = await supabase.storage
-							.from('Gallery')
-							.list(folder.name, { limit: 1 });
-						if (fileError) {
-							console.error(`Error fetching files from folder ${folder.name}:`, fileError.message);
-							return null;
-						}
-
-						if (files && files.length > 0) {
-							const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${folder.name}/${files[0].name}`;
-							console.log(
-								`Generated public URL for ${files[0].name} in folder ${folder.name}: ${publicURL}`
-							);
-							return { name: folder.name, url: publicURL };
-						}
-
-						return { name: folder.name, url: null };
-					})
-				);
-
-				images = images.filter((image) => image !== null);
-				console.log('Fetched images:', images);
-			} else {
-				console.log('No folders found in the Gallery.');
-			}
-		} catch (err) {
-			console.error('Error:', err.message);
-		}
+	$: {
+		console.log('Images updated:', images);
 	}
 
 	async function showGalleryDetails(galleryName) {
+		console.log(`showGalleryDetails called with galleryName: ${galleryName}`);
 		try {
 			console.log(`Fetching images from gallery: ${galleryName}`);
 			const { data, error } = await supabase.storage
@@ -79,8 +41,6 @@
 			console.error('Error:', err.message);
 		}
 	}
-
-	onMount(fetchImages);
 </script>
 
 <div class="gallery-container">
@@ -92,7 +52,7 @@
 		smooth jazz or elevator music remixes.
 	</p>
 
-	{#if images.length > 0}
+	{#if images && images.length > 0}
 		<div class="carousel-container">
 			{#each images as image}
 				<button
@@ -110,8 +70,10 @@
 				</button>
 			{/each}
 		</div>
-	{:else}
+	{:else if images === undefined}
 		<p aria-live="polite">Loading images...</p>
+	{:else}
+		<p aria-live="polite">No images found.</p>
 	{/if}
 
 	{#if showModal}
