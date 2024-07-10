@@ -1,5 +1,17 @@
 <script>
-	export let images = [];
+	import { supabase } from '$lib/supabaseClient';
+	// This will contain the images passed from +page.server.js
+	export let images = [
+		// Initialize with actual gallery names
+		{
+			name: 'neonDreams',
+			url: 'https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/neonDreams/endd.jpg'
+		},
+		{
+			name: 'Gallery 2',
+			url: 'https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/purple_undergrowth/Hookya.jpg'
+		}
+	];
 
 	console.log('Initial images:', images);
 
@@ -8,11 +20,12 @@
 	let selectedGalleryImages = [];
 
 	$: {
+		// New reactive statement
 		console.log('Images updated:', images);
 	}
 
 	async function showGalleryDetails(galleryName) {
-		console.log(`showGalleryDetails called with galleryName: ${galleryName}`);
+		console.log(`showGalleryDetails called with galleryName: ${galleryName}`); // New log
 		try {
 			console.log(`Fetching images from gallery: ${galleryName}`);
 			const { data, error } = await supabase.storage
