@@ -1,43 +1,44 @@
+<!-- +page.svelte -->
 <script>
-	import { onMount } from 'svelte';
-	import { supabase } from '$lib/supabaseClient';
+	export let data;
 
-	let recentArticles = [];
+	// Log the initial value of 'data'
+	console.log(' 1. Initial data:', data);
+
+	// Destructure 'props' from 'data', then 'recentArticles' from 'props'
+	const { props } = data;
+	const { recentArticles } = props;
+
+	// Now 'recentArticles' should be defined
+	console.log('Initial recentArticles:', recentArticles);
+
 	let showModal = false;
 	let selectedArticle = null;
 
-	// Fetch the most recent articles
-	async function fetchRecentArticles() {
+	async function showArticleDetails(article) {
 		try {
-			const { data, error } = await supabase
-				.from('Allthestuff')
-				.select('*')
-				.order('id', { ascending: false })
-				.eq('type_of_text', 1)
-				.limit(5);
+			// Log the article that was passed to the function
+			console.log('3. Article passed to showArticleDetails:', article);
 
-			if (error) {
-				console.error('Error fetching recent articles:', error.message);
-				return;
-			}
+			selectedArticle = article;
+			showModal = true;
 
-			recentArticles = data;
-			console.log('Fetched recent articles:', recentArticles);
+			// Log the updated values of 'selectedArticle' and 'showModal'
+			console.log('4. Updated selectedArticle:', selectedArticle);
+			console.log('5. Updated showModal:', showModal);
 		} catch (err) {
-			console.error('Error:', err.message);
+			// If an error occurred, log the error message to the console.
+			console.error('6. Error:', err.message);
 		}
 	}
 
-	function showArticleDetails(article) {
-		selectedArticle = article;
-		showModal = true;
+	// Reactive statement that logs 'recentArticles' whenever it changes
+	$: {
+		console.log('7. Updated recentArticles:', recentArticles);
 	}
-
-	onMount(fetchRecentArticles);
 </script>
 
 <h1>Blog</h1>
-
 <div class="text_Block">
 	<p class="text_Box cut_Box">
 		The Vaporwave Photographer's Blog is a mesmerizing journey into the world of retro aesthetics,
@@ -58,38 +59,50 @@
 	<br /> <br />
 
 	<h2>Most Recent Articles</h2>
-	{#if recentArticles.length > 0}
-		<ul>
-			{#each recentArticles as article}
-				<li>
-					<button
-						class="bordt"
-						type="button"
-						on:click={() => showArticleDetails(article)}
-						aria-label="View details for {article.text_name}"
-					>
-						{article.text_name}
-					</button>
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p aria-live="polite">Loading recent articles...</p>
-	{/if}
+	<h1>Blog</h1>
+	<div class="text_Block">
+		<p class="text_Box cut_Box">The Vaporwave Photographer's Blog</p>
+		<br /> <br />
 
-	{#if showModal}
-		<div class="modal-background" role="presentation">
-			<div class="modal-content">
-				{#if selectedArticle}
-					<h2>{selectedArticle.text_name}</h2>
-					<p>Date: {selectedArticle.date_made}</p>
-					<p>Author: {selectedArticle.author}</p>
-					<p>{selectedArticle.text_guts}</p>
-				{/if}
-				<button type="button" on:click={() => (showModal = false)}>Close</button>
+		<h2>Most Recent Articles</h2>
+		{#if recentArticles && recentArticles.length > 0}
+			<ul>
+				{#each recentArticles as article}
+					<li>
+						<button
+							class="bordt"
+							type="button"
+							on:click={() => showArticleDetails(article)}
+							aria-label="View details for {article.text_name}"
+						>
+							{article.text_name}
+						</button>
+					</li>
+				{/each}
+			</ul>
+		{:else}
+			<p aria-live="polite">Loading recent articles...</p>
+		{/if}
+
+		{#if showModal}
+			<div class="modal-background" role="presentation">
+				<div class="modal-content">
+					{#if selectedArticle}
+						<h2>{selectedArticle.text_name}</h2>
+						<p>Date: {selectedArticle.date_made}</p>
+						<p>Author: {selectedArticle.author}</p>
+						<p>{selectedArticle.text_guts}</p>
+					{/if}
+					<button type="button" on:click={() => (showModal = false)}>Close</button>
+				</div>
 			</div>
-		</div>
-	{/if}
+		{/if}
+	</div>
+
+	<br /> <br />
+	<p class="text_Box cut_Box">Or look into a library of the past.</p>
+	<br />
+	<a class="bordt" href="/blog/library/">Library of articles</a>
 </div>
 
 <br /> <br />
