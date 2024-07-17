@@ -1,31 +1,112 @@
 <script>
 	import { supabase } from '$lib/supabaseClient';
-	// This will contain the images passed from +page.server.js
-	export let images = [
-		// Initialize with actual gallery names
-		{
-			name: 'neonDreams',
-			url: 'https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/neonDreams/endd.jpg'
-		},
-		{
-			name: 'Gallery 2',
-			url: 'https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/purple_undergrowth/Hookya.jpg'
-		}
-	];
 
-	console.log('Initial images:', images);
+	export let data;
+
+	const { folders } = data;
 
 	let showModal = false;
 	let selectedGallery = '';
 	let selectedGalleryImages = [];
 
 	$: {
-		// New reactive statement
-		console.log('Images updated:', images);
+		console.log('Folders updated:', folders);
 	}
 
 	async function showGalleryDetails(galleryName) {
-		console.log(`showGalleryDetails called with galleryName: ${galleryName}`); // New log
+		try {
+			const { data, error } = await supabase.storage
+				.from('Gallery')
+				.list(galleryName, { limit: 100 });
+
+			if (error) {
+				return;
+			}
+
+			if (data && data.length > 0) {
+				selectedGalleryImages = data.map((file) => {
+					const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${galleryName}/${file.name}`;
+					return publicURL;
+				});
+			} else {
+			}
+
+			selectedGallery = galleryName;
+			showModal = true;
+		} catch (err) {}
+	}
+</script>
+
+<div class="gallery-container">
+	<h1>Vaporwave Gallery</h1>
+	<p class="intro-paragraph">
+		Vaporwave is a unique genre that blends music, art, and internet culture into a nostalgic yet
+		futuristic aesthetic. Emerging in the early 2010s, this style draws heavily from 1980s and 1990s
+		pop culture, incorporating elements such as retro computer graphics, early internet imagery, and
+		smooth jazz or elevator music remixes.
+	</p>
+
+	{#if folders && folders.length > 0}
+		<div class="carousel-container">
+			{#each folders as folder}
+				<button
+					class="gallery-item"
+					type="button"
+					aria-label="View details for {folder.name}"
+					on:click={() => showGalleryDetails(folder.name)}
+				>
+					<h2>{folder.name}</h2>
+				</button>
+			{/each}
+		</div>
+	{:else if folders === undefined}
+		<p aria-live="polite">Loading folders...</p>
+	{:else}
+		<p aria-live="polite">No folders found.</p>
+	{/if}
+
+	{#if showModal}
+		<div class="modal-background">
+			<div class="modal">
+				<h2>{selectedGallery}</h2>
+				{#if selectedGalleryImages.length > 0}
+					<div class="carousel-container">
+						{#each selectedGalleryImages as imageUrl}
+							<img src={imageUrl} alt={selectedGallery} />
+						{/each}
+					</div>
+				{:else}
+					<p aria-live="polite">Loading gallery images...</p>
+				{/if}
+				<button on:click={() => (showModal = false)}>Close</button>
+			</div>
+		</div>
+	{/if}
+</div>
+
+<!-- 
+		import { supabase } from '$lib/supabaseClient';
+	// The data prop is passed from the server-side load function.
+	export let data;
+
+	// Destructure the folders array from data.
+	const { folders } = data;
+
+	// Log the initial state of folders.
+	console.log('Initial folders:', folders);
+
+	let showModal = false;
+	let selectedGallery = '';
+	let selectedGalleryImages = [];
+
+	// Watch for updates to folders and log the updated state.
+	$: {
+		console.log('Folders updated:', folders);
+	}
+
+	// Function to show gallery details when a folder is selected.
+	async function showGalleryDetails(galleryName) {
+		console.log(`showGalleryDetails called with galleryName: ${galleryName}`);
 		try {
 			console.log(`Fetching images from gallery: ${galleryName}`);
 			const { data, error } = await supabase.storage
@@ -53,60 +134,7 @@
 		} catch (err) {
 			console.error('Error:', err.message);
 		}
-	}
-</script>
-
-<div class="gallery-container">
-	<h1>Vaporwave Gallery</h1>
-	<p class="intro-paragraph">
-		Vaporwave is a unique genre that blends music, art, and internet culture into a nostalgic yet
-		futuristic aesthetic. Emerging in the early 2010s, this style draws heavily from 1980s and 1990s
-		pop culture, incorporating elements such as retro computer graphics, early internet imagery, and
-		smooth jazz or elevator music remixes.
-	</p>
-
-	{#if images && images.length > 0}
-		<div class="carousel-container">
-			{#each images as image}
-				<button
-					class="gallery-item"
-					type="button"
-					aria-label="View details for {image.name}"
-					on:click={() => showGalleryDetails(image.name)}
-				>
-					<h2>{image.name}</h2>
-					{#if image.url}
-						<img src={image.url} alt={image.name} />
-					{:else}
-						<p>No image available</p>
-					{/if}
-				</button>
-			{/each}
-		</div>
-	{:else if images === undefined}
-		<p aria-live="polite">Loading images...</p>
-	{:else}
-		<p aria-live="polite">No images found.</p>
-	{/if}
-
-	{#if showModal}
-		<div class="modal-background">
-			<div class="modal">
-				<h2>{selectedGallery}</h2>
-				{#if selectedGalleryImages.length > 0}
-					<div class="carousel-container">
-						{#each selectedGalleryImages as imageUrl}
-							<img src={imageUrl} alt={selectedGallery} />
-						{/each}
-					</div>
-				{:else}
-					<p aria-live="polite">Loading gallery images...</p>
-				{/if}
-				<button on:click={() => (showModal = false)}>Close</button>
-			</div>
-		</div>
-	{/if}
-</div>
+	} -->
 
 <!-- svelte-ignore css-unused-selector -->
 <style lang="scss">
