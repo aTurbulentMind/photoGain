@@ -1,0 +1,1 @@
+import{c as s}from"./index.H4ZN2jQ3.js";const I="https://auiqlbvzsvvsjvpijukm.supabase.co",i="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1aXFsYnZ6c3Z2c2p2cGlqdWttIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1Mjk4MzUsImV4cCI6MjAzODEwNTgzNX0.OufBPSBTnZLQVzQTBniWuiJywBWhkbTCMuYutqgzSMA",t=s(I,i);export{t as s};
