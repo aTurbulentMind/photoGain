@@ -1,8 +1,6 @@
 <script>
 	import { onMount } from 'svelte'
-
-	let { session, supabase } = data
-	$: ({ session, supabase } = data)
+	import { supabase } from '$lib/supabaseClient'
 
 	let pastArticles = []
 	let showModal = false

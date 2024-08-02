@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
+	import { supabase } from '$lib/supabaseClient'
 	import { enhance } from '$app/forms'
 	import type { SubmitFunction } from '@sveltejs/kit'
 
 	export let data
 	let { existingPosts } = data
-
-	let { session, supabase, profile } = data
-	$: ({ session, supabase, profile } = data)
 
 	let images = []
 	let form = {
