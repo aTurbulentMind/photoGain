@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Gal from './Gal.svelte'
-
 	export let data
 	let { supabase, profile } = data
 	$: ({ supabase, profile } = data)
@@ -10,7 +8,6 @@
 	let showModal = false
 	let selectedGallery = ''
 	let selectedGalleryImages = []
-	let galUrl: string = profile?.gal_url ?? ''
 
 	$: {
 		console.log('Folders updated:', folders)
