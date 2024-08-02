@@ -5,6 +5,9 @@
 
 	const { folders } = data
 
+	let { session, supabase, profile } = data
+	$: ({ session, supabase, profile } = data)
+
 	let showModal = false
 	let selectedGallery = ''
 	let selectedGalleryImages = []
