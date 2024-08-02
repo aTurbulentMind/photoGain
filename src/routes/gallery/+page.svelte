@@ -1,12 +1,10 @@
 <script lang="ts">
 	export let data
-	let { supabase, profile } = data
-	$: ({ supabase, profile } = data)
 
 	const { folders } = data
 
-	let { session, supabase, profile } = data
-	$: ({ session, supabase, profile } = data)
+	let { session, supabase } = data
+	$: ({ session, supabase } = data)
 
 	let showModal = false
 	let selectedGallery = ''
@@ -53,8 +51,6 @@
 		smooth jazz or elevator music remixes.
 	</p>
 
-	<!-- <Gal {supabase} bind:url={galUrl} size={10} /> -->
-
 	{#if folders && folders.length > 0}
 		<div class="carousel-container">
 			{#each folders as folder}
@@ -92,58 +88,6 @@
 		</div>
 	{/if}
 </div>
-
-<!-- 
-		import { supabase } from '$lib/supabaseClient';
-	// The data prop is passed from the server-side load function.
-	export let data;
-
-	// Destructure the folders array from data.
-	const { folders } = data;
-
-	// Log the initial state of folders.
-	console.log('Initial folders:', folders);
-
-	let showModal = false;
-	let selectedGallery = '';
-	let selectedGalleryImages = [];
-
-	// Watch for updates to folders and log the updated state.
-	$: {
-		console.log('Folders updated:', folders);
-	}
-
-	// Function to show gallery details when a folder is selected.
-	async function showGalleryDetails(galleryName) {
-		console.log(`showGalleryDetails called with galleryName: ${galleryName}`);
-		try {
-			console.log(`Fetching images from gallery: ${galleryName}`);
-			const { data, error } = await supabase.storage
-				.from('Gallery')
-				.list(galleryName, { limit: 100 });
-
-			if (error) {
-				console.error('Error fetching images:', error.message);
-				return;
-			}
-
-			if (data && data.length > 0) {
-				selectedGalleryImages = data.map((file) => {
-					const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${galleryName}/${file.name}`;
-					console.log(`Generated public URL for ${file.name}: ${publicURL}`);
-					return publicURL;
-				});
-				console.log('Fetched gallery images:', selectedGalleryImages);
-			} else {
-				console.log('No images found in the gallery.');
-			}
-
-			selectedGallery = galleryName;
-			showModal = true;
-		} catch (err) {
-			console.error('Error:', err.message);
-		}
-} -->
 
 <style>
 	.gallery-container {
