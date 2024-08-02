@@ -1,22 +1,18 @@
-import { fail, redirect } from '@sveltejs/kit'
-import type { Actions, PageServerLoad } from './$types'
+import { fail, redirect } from '@sveltejs/kit';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, locals: { supabase, safeGetSession } }) => {
-  const { session } = await safeGetSession()
+  const { session } = await safeGetSession();
 
   // if the user is already logged in return them to the account page
   if (session) {
-    redirect(303, '/account')
+    console.log('User is already logged in');
   }
 
-  return { url: url.origin }
-}
-
-export async function load() {
   try {
     const { data: folders, error: folderError } = await supabase.storage.from('Gallery').list('');
     if (folderError) {
-      console.error('Error fetching folders:', folderError)
+      console.error('Error fetching folders:', folderError);
       return { folders: [] };
     }
 
@@ -28,7 +24,7 @@ export async function load() {
             .list(folder.name, { limit: 1 });
 
           if (fileError) {
-            console.error('Error fetching files for folder:', folder.name, fileError)
+            console.error('Error fetching files for folder:', folder.name, fileError);
             return { name: folder.name, thumbnailUrl: null };
           }
 
@@ -41,18 +37,21 @@ export async function load() {
       );
 
       return {
+        url: url.origin,
         folders: foldersData,
       };
     } else {
-      console.log('No folders found')
+      console.log('No folders found');
       return {
+        url: url.origin,
         folders: [],
       };
     }
   } catch (err) {
-    console.error('Error loading folders:', err)
+    console.error('Error loading folders:', err);
     return {
+      url: url.origin,
       folders: [],
     };
   }
-}
+};
