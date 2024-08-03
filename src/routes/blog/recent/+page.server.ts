@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ url, locals: { supabase, safeGetSes
       .select('*')
       .order('id', { ascending: false })
       .eq('type_of_text', 1) // Assuming 'type_of_text' is your filter condition
-      .limit(5);
+      .limit(1);
 
     if (error) {
       console.error('B. Error fetching recent articles:', error.message);

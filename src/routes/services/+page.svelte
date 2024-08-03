@@ -1,5 +1,4 @@
 <script>
-	import Jax from '$lib/assets/img/jax.jpg'
 	import Nextem from '$lib/assets/img/enzz.jpg'
 </script>
 

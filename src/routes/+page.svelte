@@ -27,10 +27,6 @@
 	</div>
 </div>
 
-<h1>You could be lost right now...</h1>
-
-<a href="/signUp">Get found.</a>
-
 <section id="home" in:fade={{ duration: 1000 }}>
 	<h2>Welcome to Busy Photography</h2>
 	<p>Capturing moments in a vibrant, vaporwave aesthetic.</p>

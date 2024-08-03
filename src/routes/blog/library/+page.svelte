@@ -27,6 +27,8 @@
 	{/if}
 </div>
 
+<p>Loading most recent articles...(in the future. They are not actually loading right now)</p>
+
 <style>
 	.blog-container {
 		max-width: 90vw;

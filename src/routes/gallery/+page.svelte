@@ -88,58 +88,6 @@
 	{/if}
 </div>
 
-<!-- 
-		import { supabase } from '$lib/supabaseClient';
-	// The data prop is passed from the server-side load function.
-	export let data;
-
-	// Destructure the folders array from data.
-	const { folders } = data;
-
-	// Log the initial state of folders.
-	console.log('Initial folders:', folders);
-
-	let showModal = false;
-	let selectedGallery = '';
-	let selectedGalleryImages = [];
-
-	// Watch for updates to folders and log the updated state.
-	$: {
-		console.log('Folders updated:', folders);
-	}
-
-	// Function to show gallery details when a folder is selected.
-	async function showGalleryDetails(galleryName) {
-		console.log(`showGalleryDetails called with galleryName: ${galleryName}`);
-		try {
-			console.log(`Fetching images from gallery: ${galleryName}`);
-			const { data, error } = await supabase.storage
-				.from('Gallery')
-				.list(galleryName, { limit: 100 });
-
-			if (error) {
-				console.error('Error fetching images:', error.message);
-				return;
-			}
-
-			if (data && data.length > 0) {
-				selectedGalleryImages = data.map((file) => {
-					const publicURL = `https://moajtchljlwdsgzlmkxu.supabase.co/storage/v1/object/public/Gallery/${galleryName}/${file.name}`;
-					console.log(`Generated public URL for ${file.name}: ${publicURL}`);
-					return publicURL;
-				});
-				console.log('Fetched gallery images:', selectedGalleryImages);
-			} else {
-				console.log('No images found in the gallery.');
-			}
-
-			selectedGallery = galleryName;
-			showModal = true;
-		} catch (err) {
-			console.error('Error:', err.message);
-		}
-} -->
-
 <style>
 	.gallery-container {
 		max-width: 1000px;
@@ -169,7 +117,7 @@
 		margin-top: 20px;
 	}
 
-	/* & a {
+	a {
 		color: #ff77a9;
 		text-decoration: none;
 		font-size: 1.1rem;
@@ -177,9 +125,9 @@
 		display: inline-block;
 	}
 
-	& a:hover {
+	a:hover {
 		text-decoration: underline;
-	} */
+	}
 
 	.carousel-container {
 		display: flex;
@@ -208,13 +156,13 @@
 		align-items: center;
 		cursor: pointer;
 	}
-	/* 
+
 	.gallery-item img {
 		max-width: 200px;
 		border: 2px solid #ff77a9;
 		border-radius: 8px;
 		object-fit: cover;
-	} */
+	}
 
 	.modal-background {
 		position: fixed;

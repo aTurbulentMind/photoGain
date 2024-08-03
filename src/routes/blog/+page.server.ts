@@ -15,7 +15,6 @@ export const load: PageServerLoad = async ({ url, locals: { supabase, safeGetSes
       .from('Allthestuff')
       .select('*')
       .order('id', { ascending: false })
-      .eq('type_of_text', 1) // Assuming 'type_of_text' is your filter condition
       .limit(5);
 
     if (error) {
