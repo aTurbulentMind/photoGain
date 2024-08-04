@@ -93,7 +93,7 @@
 		max-width: 1000px;
 		margin: 0 auto;
 		padding: 20px;
-		color: #f4f4f9;
+		color: var(--grabber);
 		background-color: #222;
 		border: 2px solid #ff77a9;
 		border-radius: 10px;
@@ -150,6 +150,16 @@
 		}
 	}
 
+	button {
+		all: unset;
+		background: var(--grabber);
+		text-align: center;
+		padding: var(--pad);
+		margin: var(--marg);
+		border-radius: var(--rad);
+		cursor: pointer;
+	}
+
 	.gallery-item {
 		display: flex;
 		flex-direction: column;
@@ -177,6 +187,7 @@
 	}
 
 	.modal {
+		width: 80vw;
 		background-color: #222;
 		padding: 20px;
 		border: 2px solid #ff77a9;

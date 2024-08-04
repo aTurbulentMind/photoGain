@@ -39,7 +39,7 @@
 			Current day and time is around: {getCurrentDateTime()}
 			<br />
 			<br />
-			Mon-Fri 11am-5pm: <a href="/"> 1-800-555-8557</a>
+			Mon-Fri 11am-5pm: <a href="/"> 1-800-YOU-RMOM</a>
 		</div>
 	</div>
 
@@ -49,7 +49,7 @@
 		<br />
 		<div class="body">
 			Reach out effortlessly. Send us an email to start the conversation about your debt management
-			needs to <a href="/">info@debtnet5.com</a>
+			needs to <a href="/">info@urMom.com</a>
 		</div>
 	</div>
 

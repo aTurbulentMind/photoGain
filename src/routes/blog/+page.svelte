@@ -104,11 +104,12 @@
 	/* Modal styles */
 
 	.modal {
+		width: 90vw;
 		background-color: #222;
 		padding: 20px;
 		border: 2px solid #ff77a9;
 		border-radius: 10px;
-		margin-top: 1rem;
+		margin: 1rem 0 0 5vw;
 	}
 
 	.modal button {

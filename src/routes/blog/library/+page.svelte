@@ -32,7 +32,7 @@
 <style>
 	.blog-container {
 		max-width: 90vw;
-		margin: 0;
+		margin-left: 5vw;
 		padding: 20px;
 		background-color: var(--back_Hallow_Dark);
 		border: 2px solid var(--grabber);
@@ -41,7 +41,7 @@
 	}
 
 	.blog-title {
-		color: var(--highlight);
+		color: var(--back_Other);
 		font-size: var(--f_xxl);
 		text-align: center;
 	}
