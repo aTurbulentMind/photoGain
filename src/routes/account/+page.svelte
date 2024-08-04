@@ -88,7 +88,7 @@
 		</div>
 	</form>
 
-	<a href="/account">Go to your account page</a>
+	<a href="/usr_profile">Go to your admin dashboard</a>
 
 	<form method="post" action="?/signout" use:enhance={handleSignOut}>
 		<div>
