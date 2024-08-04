@@ -88,6 +88,8 @@
 		</div>
 	</form>
 
+	<a href="/account">Go to your account page</a>
+
 	<form method="post" action="?/signout" use:enhance={handleSignOut}>
 		<div>
 			<button class="button block" disabled={loading}>Sign Out</button>
