@@ -238,6 +238,8 @@
 	</form>
 {/if}
 
+<a href="/account">Go to your account page</a>
+
 <!-- Logout Button -->
 <button on:click={handleLogout}>Logout</button>
 
