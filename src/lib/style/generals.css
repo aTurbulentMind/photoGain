@@ -10,16 +10,18 @@
 		background: linear-gradient(to right, #ff6ec7, #736efe);
 		font-family: var(--font_Main);
     overflow-x: hidden;
+    letter-spacing: 2px;
 	}
 
     a {
     text-decoration: none;
-    color: var(--back_highlight);
+    color: var(--back_Tre;
     font-weight: 500;
 
     &:hover {
         transition: all 0.3s ease-in-out;
         color: var(--grabber);
+    text-shadow: var(--text_Light);
         transform: scale(1.1);
         cursor: pointer;
         text-decoration: underline;
@@ -32,6 +34,7 @@
 		padding: 10vh 0 5vh 6vw;
 		width: fit-content;
 		font-size: var(--f_lg);
+    font-family: var(--font_Quint);
 	}
 
   p{

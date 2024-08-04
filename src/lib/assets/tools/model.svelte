@@ -18,7 +18,11 @@
 				</div>
 			</div>
 			<div class="window-content">
+				<br />
+				<br />
+				<br />
 				<p>Is it fun to be human?</p>
+				<br />
 
 				<a href="/"><button class="win_95_butt">Yes</button></a>
 				<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
