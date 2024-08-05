@@ -3,7 +3,11 @@
 	import Nextem from '$lib/assets/img/envv.jpg'
 </script>
 
-<h1>About</h1>
+<h4>Hello :)</h4>
+
+<div class="head_Line">
+	<h1>About</h1>
+</div>
 
 <img_Intro>
 	<img src={Jax} alt="background" />
@@ -43,22 +47,10 @@
 </div>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-	}
-
 	/* Phone size / base */
 	img_Intro img {
 		object-fit: cover;
 		width: 100vw;
-	}
-
-	h2 {
-		margin-top: 20vh;
-	}
-
-	.text_Block .text_Box {
-		text-shadow: var(--text-Light);
 	}
 
 	.text_Block .overLay {
@@ -70,8 +62,8 @@
 		height: 100vh;
 		width: 100vw;
 	}
-
-	/* Tablet size */
+	/* 
+	 Tablet size 
 	@media only screen and (min-width: 426px) {
 		img_Intro img {
 			object-fit: cover;
@@ -83,7 +75,7 @@
 		}
 	}
 
-	/* Laptop size */
+	 Laptop size 
 	@media only screen and (min-width: 769px) {
 		img_Intro img {
 			height: 100vh;
@@ -117,7 +109,7 @@
 		}
 	}
 
-	/* Large Screen */
+	Large Screen 
 	@media only screen and (min-width: 1440px) {
 		img_Intro img {
 			height: 100vh;
@@ -146,5 +138,5 @@
 		.wk {
 			margin-top: 60vh;
 		}
-	}
+	} */
 </style>

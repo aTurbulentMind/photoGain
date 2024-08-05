@@ -16,15 +16,14 @@
     --highlight:hwb(329 18% 4%);
 
     --main_4:hwb(310 9% 42%);
+    --gradient:linear-gradient(hsl(240, 60%, 1%), hsl(207, 95%, 7%), hsl(208, 94%, 13%));
+    --gradient_Back: linear-gradient(to right, hwb(323 43% 0%), hwb(242 43% 0%));
+    --gradient_Flip:linear-gradient(0deg, hsl(34, 100%, 1%), hsl(38, 100%, 6%), hsl(137, 97%, 11%));
 }
 
-/*
---gradient:linear-gradient(hsl(240, 60%, 1%), hsl(207, 95%, 7%), hsl(208, 94%, 13%));
-$gradientFlip:linear-gradient(0deg, hsl(34, 100%, 1%), hsl(38, 100%, 6%), hsl(137, 97%, 11%));
-
+/* 
 //color palette// theme colors
 $primary: $highlight !default;
 $secondary: $backTre !default;
 $info:$grabber !default;
-
 */

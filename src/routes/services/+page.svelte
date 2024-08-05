@@ -2,7 +2,11 @@
 	import Nextem from '$lib/assets/img/enzz.jpg'
 </script>
 
-<h1>Services</h1>
+<h4>Hello :)</h4>
+
+<div class="head_Line">
+	<h1>Services</h1>
+</div>
 
 <div class="text_Block">
 	<img class="backBack" src={Nextem} alt="background" />

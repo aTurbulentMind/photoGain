@@ -99,6 +99,12 @@
 		border-radius: 10px;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
+		& h2 {
+			text-transform: uppercase;
+			padding: 0;
+			margin: 0;
+		}
+
 		& img {
 			width: 20vw;
 			cursor: pointer;

@@ -12,9 +12,18 @@
 		selectedIndex = index
 		showModal = true
 	}
+
+	// Function to format date
+	function formatDate(dateString) {
+		const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
+		return new Date(dateString).toLocaleDateString(undefined, options)
+	}
 </script>
 
-<h1>Blog</h1>
+<div class="head_Line">
+	<h1>Blog</h1>
+</div>
+
 <div class="text_Block">
 	<p class="text_Box cut_Box">
 		The Vaporwave Photographer's Blog is a mesmerizing journey into the world of retro aesthetics,
@@ -35,28 +44,35 @@
 
 	<h2>Most Recent Articles</h2>
 	<div class="text_Block">
-		<p class="text_Box cut_Box">The Vaporwave Photographer's Blog</p>
-		<br /> <br />
-
 		{#if recentArticles && recentArticles.length > 0}
 			<ul>
 				{#each recentArticles as article, index}
 					<li>
 						<button
-							class="bordt"
+							class="win_95_butt"
 							type="button"
 							on:click={() => showArticleDetails(article, index)}
 							aria-label="View details for {article.text_name}"
 						>
 							{article.text_name}
 						</button>
+
 						{#if showModal && selectedIndex === index}
-							<div class="modal">
-								<h2>{selectedArticle.text_name}</h2>
-								<p>Date: {selectedArticle.date_made}</p>
-								<p>Author: {selectedArticle.author}</p>
-								<p>{selectedArticle.text_guts}</p>
-								<button type="button" on:click={() => (showModal = false)}>Close</button>
+							<div class="win_95">
+								<div class="title-bar">
+									<div class="title-bar-text">{selectedArticle.text_name}</div>
+									<div class="title-bar-controls">
+										<button aria-label="Close" on:click={() => (showModal = false)}>X</button>
+									</div>
+								</div>
+								<div class="window-content">
+									<p class="highlight">
+										<strong>Date:</strong>
+										{formatDate(recentArticles[0].date_made)}
+									</p>
+									<p><strong>Author:</strong> {selectedArticle.author}</p>
+									<p>{selectedArticle.text_guts}</p>
+								</div>
 							</div>
 						{/if}
 					</li>
@@ -68,15 +84,15 @@
 	</div>
 
 	<br /> <br />
-	<p class="text_Box cut_Box">Check out the last thing I wrote</p>
+	<p class="text_Box cut_Box">Check out the last thing I wrote:</p>
 	<br />
-	<a class="bordt" href="/blog/recent/">Most recent article</a>
+	<a class="bord_Caps" href="/blog/recent/">Newest words</a>
 </div>
 
 <br /> <br />
-<p class="text_Box cut_Box">Or look into a library of the past.</p>
+<p class="text_Box cut_Box">Or look into a library of the past:</p>
 <br />
-<a class="bordt" href="/blog/library/">Library of articles</a>
+<a class="bord_Caps" href="/blog/library/">Older words</a>
 
 <style>
 	a {
@@ -84,16 +100,17 @@
 		font-size: var(--f_lg);
 	}
 
-	.bordt {
-		border-top: var(--bord);
-		border-bottom: var(--bord);
-
-		margin: 5vh 15vw;
+	.win_95_butt {
+		margin: var(--bok_Qtr);
+		font-size: var(--f_m);
 	}
 
-	button {
-		font-size: var(--f_m);
-		padding: var(--pad_sm);
+	.bord_Caps {
+		margin: 5vh 0 5vh 15vw;
+	}
+
+	.window-content {
+		background-color: var(--text_Main);
 	}
 
 	ul li {
@@ -111,7 +128,7 @@
 		border-radius: 10px;
 		margin: 1rem 0 0 5vw;
 	}
-
+	/* 
 	.modal button {
 		background-color: #ff77a9;
 		color: #222;
@@ -124,5 +141,5 @@
 
 	.modal button:hover {
 		background-color: #ff99b4;
-	}
+	} */
 </style>

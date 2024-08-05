@@ -7,17 +7,22 @@
 		console.log('Updated recentArticles:', recentArticles)
 	}
 
-	console.log('Initial data:', data)
-	console.log('Initial recentArticles:', recentArticles)
+	// Function to format date
+	function formatDate(dateString) {
+		const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
+		return new Date(dateString).toLocaleDateString(undefined, options)
+	}
 </script>
 
-<h1>Library of past ideas</h1>
+<div class="head_Line">
+	<h1>Library of The Sunken City</h1>
+</div>
 
 <div class="blog-container">
 	{#if recentArticles.length > 0}
 		{#each recentArticles as article}
 			<h2 class="blog-title">{article.text_name}</h2>
-			<p class="highlight"><strong>Date:</strong> {article.date_made}</p>
+			<p class="highlight"><strong>Date:</strong> {formatDate(recentArticles[0].date_made)}</p>
 			<div class="blog-content">
 				<p>{article.text_guts}</p>
 			</div>
@@ -33,36 +38,30 @@
 	.blog-container {
 		max-width: 90vw;
 		margin-left: 5vw;
-		padding: 20px;
-		background-color: var(--back_Hallow_Dark);
-		border: 2px solid var(--grabber);
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+		padding: var(--pad_sm);
+		border: 2px solid var(--highlight);
 		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+		background-color: var(--back_Hallow_Dark);
 	}
 
 	.blog-title {
-		color: var(--back_Other);
-		font-size: var(--f_xxl);
+		margin: var(--marg);
+		color: var(--highlight);
+		font-size: var(--f_lg);
 		text-align: center;
+		text-transform: capitalize;
 	}
 
 	.blog-content {
-		font-size: var(--font);
-		line-height: 1.6;
+		& p {
+			font-size: var(--font);
+			margin: var(--marg);
+		}
 	}
 
 	.highlight {
 		color: var(--highlight);
-	}
-
-	ul {
-		list-style-type: square;
-		margin: 20px 0;
-		padding-left: 20px;
-	}
-
-	ul li {
-		margin: 10px 0;
 	}
 
 	.image-container {

@@ -1,46 +1,22 @@
-<!-- +page.svelte -->
 <script>
 	export let data
 	export let recentArticles = data.recentArticles || []
 
-	$: {
-		console.log('Updated recentArticles:', recentArticles)
-	}
-
-	console.log('Initial data:', data)
-
-	const { props } = data
-
-	console.log('Initial recentArticles:', recentArticles)
-
-	let showModal = false
-	let selectedArticle = null
-
-	async function showArticleDetails(article) {
-		try {
-			console.log('Article passed to showArticleDetails:', article)
-
-			selectedArticle = article
-			showModal = true
-
-			console.log('Updated selectedArticle:', selectedArticle)
-			console.log('Updated showModal:', showModal)
-		} catch (err) {
-			console.error('Error:', err.message)
-		}
-	}
-
-	$: {
-		console.log('Updated recentArticles:', recentArticles)
+	// Function to format date
+	function formatDate(dateString) {
+		const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
+		return new Date(dateString).toLocaleDateString(undefined, options)
 	}
 </script>
 
-<h1>Most Recent Fire</h1>
+<div class="head_Line">
+	<h1>Most Recent Fire</h1>
+</div>
 
 <div class="blog-container">
 	{#if recentArticles.length > 0}
 		<h2 class="blog-title">{recentArticles[0].text_name}</h2>
-		<p class="highlight"><strong>Date:</strong> {recentArticles[0].date_made}</p>
+		<p class="highlight"><strong>Date:</strong> {formatDate(recentArticles[0].date_made)}</p>
 		<div class="blog-content">
 			<p>{recentArticles[0].text_guts}</p>
 		</div>
@@ -53,22 +29,26 @@
 	.blog-container {
 		max-width: 90vw;
 		margin-left: 5vw;
-		padding: 20px;
-		background-color: var(--back_Hallow_Dark);
+		padding: var(--pad_sm);
 		border: 2px solid var(--highlight);
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+		background-color: var(--back_Hallow_Dark);
 	}
 
 	.blog-title {
 		color: var(--highlight);
 		font-size: var(--f_xxl);
 		text-align: center;
+		text-transform: capitalize;
 	}
 
 	.blog-content {
 		font-size: var(--font);
-		line-height: 1.6;
+
+		& p {
+			margin: var(--marg);
+		}
 	}
 
 	.highlight {

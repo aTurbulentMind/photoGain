@@ -50,72 +50,71 @@
     }
 }
 
-.add-ons {
-		display: grid;
-        grid-template-columns: 1fr;
-		list-style-type: none;
-		width: 80vw;
-		margin: 2vw 10vw;
 
-		li {
-			background-color: var(--back_Alt);
-			border: var(--bord);
-			border-radius: var(--rad);
-			font-size: var(--f_lg);
-			cursor: pointer;
-			width: fit-content;
-			padding: 1%;
-			margin: 2vh auto;
-			height: fit-content;
+/* Cards */
+.indi_card {
+    display: block;
+    height: fit-content;
+    margin: var(--marg_xxl);
+    padding: var(--pad);
+    box-shadow: var(--mainShadow);
+    border-radius: var(--rad);
+    background: var(--backHallow);
 
-            
-        button {
-			background: transparent;
-			border: none;
-			font-size: var(--f_m);
-			color: var(--back_Main);
-            padding: 0;
-		}
+    & .card-title {
+        font-size: var(--font);
+        font-weight: bold;
+    }
 
-			p {
-				font-size: var(--font);
-				padding: 0;
-				margin: 5% 0;
-				cursor: default;
-			}
+    & .card-body {
+        font-size: var(--f-sm);
 
-        .selected {
-			border-radius: var(--rad);
-			background-color: var(--back_Main);
-			color: var(--text_Main);
-		}
-
-		.unselected {
-			height: fit-content;
-		}
-		}
-
-		.hidden {
-			display: none;
-		}
-
-        @media only screen and (min-width: 780px) {
-            grid-template-columns: 1fr 1fr;
+        & a {
+            text-decoration: underline;
         }
+    }
 
-        @media only screen and (min-width: 1080px) {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        	@media only screen and (min-width: 1280px) {
-                .selected{
-                    font-size: var(--f_xl);
-                    p{
-                        font-size: var(--f_m);
-                    }
-                }
+    /* @media (min-width: 991px) {
+        .card-body {
+            font-size: var(--font);
             }
-	}
+        } */
+}
+
+
+/* Buttons */
+.butts {
+    width: fit-content;
+    margin: var(--marg);
+    padding: var(--pad_sm);
+    background: rgba(15, 17, 15, 0.616);
+    color: var(--text_Main);
+    text-transform: uppercase;
+    font-weight: 100;
+    border: var(--bord);
+    border-radius: var(--rad);
+    transition: all var(--tSpeed) ease-in-out;
+
+        &:hover {
+        transition: all var(--tSpeed) ease-in-out;
+        background: var(--grabber);
+        color: var(--backMain);
+        box-shadow: var(--box_Shadow);
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    /* @media (min-width: 780px) {
+        margin: 0 25%;
+    } */
+}
+
+.bord_Caps {
+	border-top: var(--bord);
+	border-bottom: var(--bord);
+	text-shadow: none;
+	margin: 5vh 0 5vh 15vw;
+}
 
 
 /* blurred background */
@@ -132,9 +131,82 @@
     padding: var(--pad);
 }
 
+/* Headline */
+	.head_Line {
+		z-index: 901;
+		position: relative;
+		width: fit-content;
+		margin: var(--half_marg);
+		padding: var(--pad);
+		background: var(--back_Main);
+		border: var(--bord);
+		border-radius: var(--rad);
+
+		& h1 {
+			font-size: var(--f_xl);
+            text-transform: capitalize;
+            padding: 0;
+		}
+	}
+
+/* Form  */
+form {
+		position: absolute;
+		top: 45vh;
+		left: 5vw;
+		width: 90vw;
+		height: 50vh;
+
+		& h2 {
+			font-size: var(--f_m);
+			margin: 0;
+			margin-top: -10vh;
+		}
+
+		& p {
+			position: relative;
+			top: -5vh;
+			left: 0.01vw;
+			margin-top: 4.25vh;
+			padding: 0 5vw 0 0;
+			text-align: left;
+		}
+
+		& input {
+			position: absolute;
+			right: 7vw;
+			width: 55vw;
+			height: 3vh;
+			font-size: var(--font);
+			margin-top: 4vh;
+		}
+
+		& .text_Message {
+			margin-top: -3vh;
+		}
+
+		& button {
+			position: absolute;
+			background: var(--highlight);
+			width: fit-content;
+			padding: 1%;
+			bottom: 4vh;
+			left: 35vw;
+			font-size: var(--f_m);
+			border-radius: var(--rad);
+			font-weight: 700;
+			&&:hover {
+				transition: all 0.3s ease-in-out;
+				transform: scale(1.1);
+				cursor: pointer;
+				box-shadow: var(--box_Light);
+			}
+		}
+		}
 
 
-   /* Define the color variables to match Windows 95 theme */
+
+/* Windows 95 theme  box*/
     :root {
 		--win95-background: hwb(210 76% 20%);
 		--win95-border-light: hwb(234 96% 0%);
@@ -143,120 +215,88 @@
 		--win95-text: hwb(240 0% 97%);
         --win95-border-width: 2px;
 
-        --win95-Fade:linear-gradient(to right, var(--win95-border-dark), var(--win95-border-medium))
+        --win95-Fade:linear-gradient(to right, var(--win95-border-dark), var(--win95-border-medium));
 
         --win95-padding: 10px;
-        --pad_sm: 5px;
-        --marg_xl: 10px;
+        --win95-marg: 5px;
     }
 
 .win_95 {
-        background: var(--win95-background);
-        color: var(--win95-text);
-        border: var(--win95-border-width) solid var(--win95-text);
-        border-top-color: var(--win95-border-light);
-        border-left-color: var(--win95-border-light);
-		width: 80vw;
-		margin-left: 10vw;
-        font-size: var(--f_m);
-        line-height: 1.5;
-        position: relative;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-        padding: var(--pad);
-
-    .title-bar {
-        background: linear-gradient(to right, var(--win95-border-dark), var(--back_Other));
-        color: var(--win95-border-light);
-        padding:0 5px;
-        margin: -3%;
+    position: relative;
+    width: 80vw;
+    margin-left: 10vw;
+    background: var(--win95-background);
+    border: var(--win95-border-width) solid var(--win95-text);
+    border-top-color: var(--win95-border-light);
+    border-left-color: var(--win95-border-light);
+    box-shadow: var(--box_Shadow);
+    color: var(--win95-text);
+    font-size: var(--f_m);
+    padding: var(--pad);
+    
+    & .title-bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-weight: bold;
+        background: var(--win95-border-dark);
         border-bottom: var(--win95-border-width) solid var(--win95-Fade);
+        color: var(--win95-border-light);
+        padding:0 5px;
+        margin: -3%;
+        font-weight: bold;
 
-        .title-bar-text {
-            padding: var(--pad);
-            letter-spacing: 3px;
+        & .title-bar-text {
+            font-size: var(--f_lg);
+            padding: var(--pad);        
+            text-shadow: none;
     }
 
-        .title-bar-controls {
+    &  .title-bar-controls {
+
+        &  button {
             display: flex;
-            gap: 5px;
-
-            button {
-                background: var(--win95-background);
-                border: var(--win95-border-width) solid var(--win95-text);
-                border-top-color: var(--win95-border-light);
-                border-left-color: var(--win95-border-light);
-                width: 30px;
-                height: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: var(--f_m);
-                padding: auto;
-                font-weight: bold;
-                cursor: pointer;
-    }
-    }
-    }
-
-        .window-content {
-            p {
-                font-size: var(--f_m);
-                margin:-15% 15% 0 15%;
-                text-shadow: none;
-            }
-
-        .win_95_butt {
+            width: 30px;
+            height: 30px;
             background: var(--win95-background);
             border: var(--win95-border-width) solid var(--win95-text);
             border-top-color: var(--win95-border-light);
             border-left-color: var(--win95-border-light);
-            color: var(--win95-text);
-            padding: 5px 10px;
-            margin: 0 15%;
-            position:center;
-            cursor: pointer;
+            justify-content: center;
+            align-items: center;
             font-size: var(--f_m);
+            text-shadow: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
     }
 
-        .win_95_butt:hover {
-        border-color: var(--win95-border-medium);
+    & .window-content {
+        &  p {
+            margin:var(--marg_xl);
+            font-size: var(--f_m);
+            text-shadow: none;
+        }
+
+        &  .win_95_butt {
+            background: var(--win95-background);
+            border: var(--win95-border-width) solid var(--win95-text);
+            border-top-color: var(--win95-border-light);
+            border-left-color: var(--win95-border-light);
+            padding: var(--pad_sm);
+            margin: var(--bok_Sd);
+            position:center;
+            color: var(--win95-text);
+            font-size: var(--f_m);
+            cursor: pointer;
+    }
+
+        &  .win_95_butt:hover {
+            border-color: var(--win95-border-medium);
     }
     }
 }
 
-/* Cards */
-.indi_card {
-    display: block;
-    height: fit-content;
-    margin: var(--marg_xxl);
-    padding: var(--pad);
-    box-shadow: var(--mainShadow);
-    border-radius: var(--rad);
-    background: var(--backHallow);
-
-    .card-title {
-        font-size: var(--font);
-        font-weight: bold;
-    }
-
-    .card-body {
-        font-size: var(--f-sm);
-
-        a {
-            text-decoration: underline;
-        }
-    }
-
-    @media (min-width: 991px) {
-        .card-body {
-            font-size: var(--font);
-            }
-        }
-}
 
 
 /* text blocks */
@@ -287,34 +327,6 @@
         }
 	}
 	}
-
-
-/* Buttons */
-.butts {
-    width: fit-content;
-    margin: var(--marg);
-    padding: var(--pad_sm);
-    background: rgba(15, 17, 15, 0.616);
-    color: var(--text_Main);
-    text-transform: uppercase;
-    font-weight: 100;
-    border: var(--bord);
-    border-radius: var(--rad);
-    transition: all var(--tSpeed) ease-in-out;
-
-        &:hover {
-        transition: all var(--tSpeed) ease-in-out;
-        background: var(--grabber);
-        color: var(--backMain);
-        box-shadow: var(--box_Shadow);
-        transform: scale(1.1);
-        cursor: pointer;
-    }
-
-    @media (min-width: 780px) {
-        margin: 0 25%;
-    }
-}
 
 /* Highlights */
 .alt_Color {

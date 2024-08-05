@@ -60,6 +60,7 @@
 		background-color: var(--back_Alt);
 		color: var(--back_Main);
 	}
+
 	/* 
 @media (min-width: 980px) {
 		meni {

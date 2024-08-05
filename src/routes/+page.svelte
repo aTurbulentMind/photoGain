@@ -21,15 +21,13 @@
 </script>
 
 <div class="hero">
-	<div class="hero_Background" />
 	<div class="modal">
 		<Moodal {showModal} />
 	</div>
 </div>
 
 <section id="home" in:fade={{ duration: 1000 }}>
-	<h2>Welcome to Busy Photography</h2>
-	<p>Capturing moments in a vibrant, vaporwave aesthetic.</p>
+	<h1>Capturing moments in a vibrant, vaporwave aesthetic.</h1>
 </section>
 
 <p>
@@ -68,15 +66,15 @@
 
 <div class="win_95">
 	<div class="title-bar">
-		<div class="title-bar-text">Appointments</div>
+		<div class="title-bar-text">Read Stuff</div>
 		<div class="title-bar-controls">
 			<button aria-label="Close">X</button>
 		</div>
 	</div>
 	<div class="window-content">
-		<p>Schedule some time travel today!</p>
-		<a href="/Contact/"><button class="win_95_butt">Yes</button></a>
-		<button class="win_95_butt">No</button>
+		<p>Read some words today!</p>
+		<a href="/blog/"><button class="win_95_butt">Yes</button></a>
+		<button href="/" class="win_95_butt">No</button>
 	</div>
 </div>
 
@@ -121,9 +119,6 @@
 </div>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-	}
 	.hero {
 		display: flex;
 		position: relative;
@@ -132,74 +127,15 @@
 		background-attachment: fixed;
 		background-position: center;
 		background-size: cover;
-		z-index: 990;
+		z-index: 999;
 		height: 100vh;
 		width: 100vw;
 
 		& .modal {
 			margin-top: 25vh;
 		}
-
-		& form {
-			position: absolute;
-			top: 45vh;
-			left: 5vw;
-			width: 90vw;
-			height: 50vh;
-
-			& h2 {
-				font-size: var(--f_m);
-				margin: 0;
-				margin-top: -10vh;
-			}
-
-			& p {
-				position: relative;
-				top: -5vh;
-				left: 0.01vw;
-				margin-top: 4.25vh;
-				padding: 0 5vw 0 0;
-				text-align: left;
-			}
-
-			& input {
-				position: absolute;
-				right: 7vw;
-				width: 55vw;
-				height: 3vh;
-				font-size: var(--font);
-				margin-top: 4vh;
-			}
-
-			& .text_Message {
-				margin-top: -3vh;
-			}
-
-			& button {
-				position: absolute;
-				background: var(--highlight);
-				width: fit-content;
-				padding: 1%;
-				bottom: 4vh;
-				left: 35vw;
-				font-size: var(--f_m);
-				border-radius: var(--rad);
-				font-weight: 700;
-
-				&&:hover {
-					transition: all 0.3s ease-in-out;
-					transform: scale(1.1);
-					cursor: pointer;
-					box-shadow: var(--box_Light);
-				}
-			}
-		}
 	}
 
-	h1,
-	p {
-		text-shadow: var(--text_Shadow);
-	}
 	/* 
 	// Tablet
 	@media only screen and (min-width: 426px) {

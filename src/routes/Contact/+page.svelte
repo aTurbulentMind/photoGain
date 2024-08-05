@@ -36,10 +36,12 @@
 			concerns.
 			<br />
 			<br />
-			Current day and time is around: {getCurrentDateTime()}
+			Current day and time is around:
+			<br />
+			{getCurrentDateTime()}
 			<br />
 			<br />
-			Mon-Fri 11am-5pm: <a href="/"> 1-800-YOU-RMOM</a>
+			Mon-Fri 11am-5pm: <a href="/"> <br /> 1-800-YOUR-MOM</a>
 		</div>
 	</div>
 
@@ -62,16 +64,18 @@
 			<br />
 			<ul>
 				<li>
-					Facebook: <a href="/"> Check if its alive</a>
+					Facebook: <a href="/"> Check it</a>
 				</li>
 				<li>
-					Twitter: <a href="https://www.threads.net/@busychildphotos"> Check if its alive</a>
+					Twitter: <a href="https://www.threads.net/@busychildphotos"> Check it</a>
 				</li>
 				<li>
-					Instagram: <a href="https://www.instagram.com/busychildphotos/"> Check if its alive</a>
+					Instagram: <a href="https://www.instagram.com/busychildphotos/"> Check it</a>
 				</li>
 				<li>
-					Social page: <a href="/"> Yet another page</a>
+					Social page:
+					<br />
+					<a href="/"> Yet another page</a>
 				</li>
 			</ul>
 		</div>
@@ -79,53 +83,29 @@
 </div>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-	}
-
 	.grid {
 		border: var(--bord);
+
+		& .card {
+			box-shadow: none;
+
+			& .card-title {
+				font-size: var(--f_lg);
+			}
+
+			& svg {
+				width: 25%;
+				margin: -50px 40% 0 40%;
+			}
+		}
+
+		& ul li {
+			list-style-type: none;
+			margin: 2vh 0;
+		}
 	}
 
-	.grid .card {
-		box-shadow: none;
-	}
-
-	.grid .card svg {
-		width: 20%;
-		margin: -50px 40%;
-	}
-
-	.grid .card .card-title {
-		font-size: var(--font);
-	}
-
-	.grid .card .body {
-		font-size: var(--f_sm);
-	}
-
-	.head_Line {
-		background: var(--back_Main);
-		z-index: 901;
-		margin: 8vh auto;
-		font-size: var(--f_sm);
-		border-radius: var(--rad);
-		border: var(--bord);
-		padding: var(--pad);
-		width: fit-content;
-		position: relative;
-	}
-
-	.head_Line h1 {
-		padding: 0;
-	}
-
-	ul li {
-		list-style-type: none;
-		margin: 1vh 0;
-	}
-
-	@media only screen and (min-width: 769px) {
+	/* @media only screen and (min-width: 769px) {
 		.grid {
 			grid-template-columns: 1fr 1fr;
 			gap: var(--pad_xl);
@@ -156,5 +136,5 @@
 			padding: 0;
 			width: fit-content;
 		}
-	}
+	} */
 </style>
