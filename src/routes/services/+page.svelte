@@ -10,7 +10,7 @@
 
 <div class="text_Block">
 	<img class="backBack" src={Nextem} alt="background" />
-	<p class="text_Box cut_Box overLay glass_Back">
+	<p class="text_Box overLay glass_Back">
 		Exciting developments are on the horizon! We are thrilled to announce that services like
 		appointments for photo and video shoots will soon be available. This addition will allow clients
 		to easily schedule and manage their sessions with our talented team. Whether you're looking for
@@ -29,13 +29,9 @@
 </div>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-	}
-
 	/* Phone size / base */
-	.text_Block .text_Box {
-		text-shadow: var(--text-Light);
+	p {
+		text-shadow: var(--text_Light);
 	}
 
 	.text_Block .overLay {
