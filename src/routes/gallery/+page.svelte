@@ -90,18 +90,17 @@
 
 <style>
 	.gallery-container {
-		max-width: 1000px;
+		width: 100vw;
 		margin: 0 auto;
-		padding: 20px;
-		color: var(--grabber);
-		background-color: #222;
-		border: 2px solid #ff77a9;
+		color: var(--highlight_Alt);
+		background-color: var(--back_Hallow_Dark);
+		border: 2px solid var(--highlight_Alt);
 		border-radius: 10px;
-		box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+		box-shadow: var(--box_Shadow);
 
 		& h2 {
 			text-transform: uppercase;
-			padding: 0;
+			padding: 20px;
 			margin: 0;
 		}
 
@@ -113,45 +112,32 @@
 
 	.intro-paragraph {
 		margin-bottom: 40px;
-		font-size: 1.2rem;
-		line-height: 1.6;
-		color: #ff77a9;
+		font-size: var(--f_m);
+		color: var(--highlight_Alt);
 	}
 
 	h2 {
-		color: #ff77a9;
+		color: var(--highlight);
 		margin-top: 20px;
-	}
-
-	a {
-		color: #ff77a9;
-		text-decoration: none;
-		font-size: 1.1rem;
-		margin-bottom: 20px;
-		display: inline-block;
-	}
-
-	a:hover {
-		text-decoration: underline;
 	}
 
 	.carousel-container {
 		display: flex;
 		overflow-x: auto;
 		gap: 10px;
-		margin-bottom: 40px;
+		margin: 40px 10px;
 
 		&::-webkit-scrollbar {
 			height: 12px;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: #ff77a9;
+			background: var(--highlight_Alt);
 			border-radius: 10px;
 		}
 
 		&::-webkit-scrollbar-track {
-			background: #222;
+			background: var(--back_Hallow_Dark);
 			border-radius: 10px;
 		}
 	}
@@ -164,6 +150,10 @@
 		margin: var(--marg);
 		border-radius: var(--rad);
 		cursor: pointer;
+
+		&:hover {
+			background: var(--back_Hallow);
+		}
 	}
 
 	.gallery-item {

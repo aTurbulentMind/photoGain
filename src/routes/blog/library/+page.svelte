@@ -40,8 +40,8 @@
 		margin-left: 5vw;
 		padding: var(--pad_sm);
 		border: 2px solid var(--highlight);
-		border-radius: 8px;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+		border-radius: var(--rad);
+		box-shadow: var(--box_Shadow);
 		background-color: var(--back_Hallow_Dark);
 	}
 
@@ -73,6 +73,6 @@
 	.image-container img {
 		max-width: 100%;
 		border: 2px solid var(--highlight);
-		border-radius: 8px;
+		border-radius: var(--rad);
 	}
 </style>

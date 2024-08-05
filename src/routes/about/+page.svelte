@@ -42,7 +42,7 @@
 		<br /><br />
 		So, if you’re ready to see the Pacific Northwest like never before, bathed in the glow of a cyber
 		sunset and wrapped in the warmth of infectious curiosity, grab your windbreaker and your sense of
-		wonder. It's time for a photoshoot that transcends the ordinary and embraces the extraordinary.
+		wonder. It's time for a photo shoot that transcends the ordinary and embraces the extraordinary.
 	</p>
 </div>
 

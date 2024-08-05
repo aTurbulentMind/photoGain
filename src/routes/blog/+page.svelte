@@ -103,6 +103,7 @@
 	.win_95_butt {
 		margin: var(--bok_Qtr);
 		font-size: var(--f_m);
+		padding: var(--pad);
 	}
 
 	.bord_Caps {
@@ -117,29 +118,4 @@
 		list-style-type: none;
 		margin: 2vh 0;
 	}
-
-	/* Modal styles */
-
-	.modal {
-		width: 90vw;
-		background-color: #222;
-		padding: 20px;
-		border: 2px solid #ff77a9;
-		border-radius: 10px;
-		margin: 1rem 0 0 5vw;
-	}
-	/* 
-	.modal button {
-		background-color: #ff77a9;
-		color: #222;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-		font-size: 1rem;
-	}
-
-	.modal button:hover {
-		background-color: #ff99b4;
-	} */
 </style>

@@ -49,7 +49,7 @@
 		width: 100vw;
 	}
 
-	/* Tablet size */
+	/* Tablet size 
 	@media only screen and (min-width: 426px) {
 		img_Intro img {
 			object-fit: cover;
@@ -61,7 +61,7 @@
 		}
 	}
 
-	/* Laptop size */
+	 Laptop size 
 	@media only screen and (min-width: 769px) {
 		img_Intro img {
 			height: 100vh;
@@ -95,7 +95,7 @@
 		}
 	}
 
-	/* Large Screen */
+	 Large Screen 
 	@media only screen and (min-width: 1440px) {
 		img_Intro img {
 			height: 100vh;
@@ -124,5 +124,5 @@
 		.wk {
 			margin-top: 60vh;
 		}
-	}
+	}*/
 </style>
