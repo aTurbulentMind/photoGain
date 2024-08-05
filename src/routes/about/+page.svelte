@@ -53,6 +53,11 @@
 		width: 100vw;
 	}
 
+	p {
+		color: var(--text_Main);
+		text-shadow: var(--text_Light);
+	}
+
 	.text_Block .overLay {
 		margin-top: -80vh;
 	}
