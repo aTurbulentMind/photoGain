@@ -1,8 +1,12 @@
-
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession } }) => {
+  const { session } = await safeGetSession();
+  if (!session) {
+    return redirect(303, '/');
+  }
+
   const { data: existingPosts, error } = await supabase.from('Allthestuff').select('*');
   if (error) {
     console.error('Error fetching posts:', error.message);
@@ -12,7 +16,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions: Actions = {
-  submit: async ({ request }) => {
+  submit: async ({ request, locals: { supabase, safeGetSession } }) => {
+    const { session } = await safeGetSession();
+    if (!session) return fail(401, { error: 'Unauthorized' });
+
     const formData = await request.formData();
     const operation = formData.get('operation');
     const postData = {
@@ -25,51 +32,28 @@ export const actions: Actions = {
       type_of_text: formData.get('type_of_text')
     };
 
+    let error;
     if (operation === 'new') {
-      const { data, error } = await supabase.from('Allthestuff').insert([postData]);
-      if (error) {
-        console.error('Error inserting post:', error.message);
-        return fail(500, { error: error.message });
-      }
-
-      // Handle image uploads
-      const images = formData.getAll('images');
-      if (images && images.length > 0) {
-        for (const image of images) {
-          const filePath = `${postData.text_name}/${image.name}`;
-          const { error: uploadError } = await supabase.storage
-            .from('Gallery')
-            .upload(filePath, image);
-
-          if (uploadError) {
-            console.error('Error uploading image:', uploadError.message);
-          } else {
-            console.log(`Successfully uploaded ${image.name}`);
-          }
-        }
-      }
+      ({ error } = await supabase.from('Allthestuff').insert([postData]));
     } else if (operation === 'modify') {
       const id = formData.get('id');
-      const { data, error } = await supabase.from('Allthestuff').update(postData).match({ id });
-      if (error) {
-        console.error('Error updating post:', error.message);
-        return fail(500, { error: error.message });
-      }
+      ({ error } = await supabase.from('Allthestuff').update(postData).eq('id', id));
+    }
 
-      // Handle image uploads
-      const images = formData.getAll('images');
-      if (images && images.length > 0) {
-        for (const image of images) {
-          const filePath = `${postData.text_name}/${image.name}`;
-          const { error: uploadError } = await supabase.storage
-            .from('Gallery')
-            .upload(filePath, image);
+    if (error) {
+      console.error('Error with operation:', error.message);
+      return fail(500, { error: error.message });
+    }
 
-          if (uploadError) {
-            console.error('Error uploading image:', uploadError.message);
-          } else {
-            console.log(`Successfully uploaded ${image.name}`);
-          }
+    const images = formData.getAll('images');
+    if (images.length > 0) {
+      for (const image of images) {
+        const filePath = `${postData.text_name}/${image.name}`;
+        const { error: uploadError } = await supabase.storage.from('Gallery').upload(filePath, image);
+        if (uploadError) {
+          console.error('Error uploading image:', uploadError.message);
+        } else {
+          console.log(`Successfully uploaded ${image.name}`);
         }
       }
     }

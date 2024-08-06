@@ -4,10 +4,7 @@
 	import type { SubmitFunction } from '@sveltejs/kit'
 
 	export let data
-	let { existingPosts } = data
-
-	let { session, supabase, profile } = data
-	$: ({ session, supabase, profile } = data)
+	let { existingPosts, session, supabase, profile } = data
 
 	let images = []
 	let form = {
@@ -22,6 +19,15 @@
 		images: []
 	}
 	let operation = ''
+
+	let loading = false
+
+	const handleSubmit: SubmitFunction = () => {
+		loading = true
+		return async () => {
+			loading = false
+		}
+	}
 
 	async function handlePostSelection() {
 		const selectedPost = existingPosts.find((post) => post.id === form.id)
@@ -54,6 +60,8 @@
 			} else {
 				images = []
 			}
+		} else {
+			console.error('Selected post not found')
 		}
 	}
 
@@ -62,186 +70,207 @@
 		const { error } = await supabase.storage
 			.from('Gallery')
 			.remove([`${form.text_name}/${fileName}`])
-		if (error) console.error('Error deleting image:', error.message)
-		else {
+		if (error) {
+			console.error('Error deleting image:', error.message)
+		} else {
 			images = images.filter((image) => image.url !== imageUrl)
 			console.log(`Successfully deleted ${fileName}`)
 		}
 	}
 
+	function handleFileChange(event) {
+		form.images = Array.from(event.target.files) // Convert FileList to Array
+	}
+
 	async function handleLogout() {
 		const { error } = await supabase.auth.signOut()
-		if (error) console.error('Error logging out:', error.message)
-		else console.log('Successfully logged out')
+		if (error) {
+			console.error('Error logging out:', error.message)
+		} else {
+			console.log('Successfully logged out')
+		}
 	}
 </script>
 
-<h1>Hello friend.</h1>
+<br />
+<br />
+<br />
 
-<select bind:value={operation}>
-	<option value="">-- select an operation --</option>
-	<option value="new">New Post</option>
-	<option value="modify">Modify Existing</option>
-</select>
+<div class="win_95">
+	<select bind:value={operation}>
+		<option value="">-- select an operation --</option>
+		<option value="new">New Post</option>
+		<option value="modify">Modify Existing</option>
+	</select>
 
-{#if operation === 'new'}
 	<!-- New Post Form -->
-	<form method="post" action="?/submit" enctype="multipart/form-data" use:enhance>
-		<input type="hidden" name="operation" value="new" />
-		<label>
-			Type of text:
+	{#if operation === 'new'}
+		<form method="post" action="?/submit" use:enhance enctype="multipart/form-data">
+			<input type="hidden" name="operation" value="new" />
 			<label>
-				<input type="radio" name="type_of_text" value="1" bind:group={form.type_of_text} /> Blog
+				Type of text:
+				<br />
+				<label>
+					<input type="radio" name="type_of_text" value="1" bind:group={form.type_of_text} /> Blog
+				</label>
+				<label>
+					<input type="radio" name="type_of_text" value="2" bind:group={form.type_of_text} /> Gallery
+				</label>
 			</label>
+			<br />
 			<label>
-				<input type="radio" name="type_of_text" value="2" bind:group={form.type_of_text} /> Gallery
+				Images:
+				<input type="file" name="images" id="image-upload" multiple on:change={handleFileChange} />
 			</label>
-		</label>
+			<br />
+			<label>
+				Date Made:
+				<input type="date" name="date_made" bind:value={form.date_made} required />
+			</label>
+			<br />
+			<label>
+				Text Name:
+				<input
+					type="text"
+					name="text_name"
+					bind:value={form.text_name}
+					placeholder="Name of text"
+					required
+				/>
+			</label>
+			<br />
+			<label>
+				Author:
+				<input
+					type="text"
+					name="author"
+					bind:value={form.author}
+					placeholder="Name of author"
+					required
+				/>
+			</label>
+			<br />
+			<label>
+				Categories:
+				<input
+					type="text"
+					name="categories"
+					bind:value={form.categories}
+					placeholder="Categories"
+					required
+				/>
+			</label>
+			<br />
+			<label>
+				Status:
+				<input type="text" name="status" bind:value={form.status} placeholder="Status" required />
+			</label>
+			<br />
+			<label>
+				Text:
+				<input
+					type="text"
+					name="text_guts"
+					bind:value={form.text_guts}
+					placeholder="Text guts"
+					required
+				/>
+			</label>
+			<br />
+			<button type="submit">Submit</button>
+		</form>
 
-		<label>
-			Images:
-			<input type="file" name="images" id="image-upload" multiple bind:files={form.images} />
-		</label>
-
-		<label>
-			Date Made:
-			<input type="date" name="date_made" bind:value={form.date_made} required />
-		</label>
-		<label>
-			Text Name:
-			<input
-				type="text"
-				name="text_name"
-				bind:value={form.text_name}
-				placeholder="Name of text"
-				required
-			/>
-		</label>
-		<label>
-			Author:
-			<input
-				type="text"
-				name="author"
-				bind:value={form.author}
-				placeholder="Name of author"
-				required
-			/>
-		</label>
-		<label>
-			Categories:
-			<input
-				type="text"
-				name="categories"
-				bind:value={form.categories}
-				placeholder="Categories"
-				required
-			/>
-		</label>
-		<label>
-			Status:
-			<input type="text" name="status" bind:value={form.status} placeholder="Status" required />
-		</label>
-		<label>
-			Text:
-			<input
-				type="text"
-				name="text_guts"
-				bind:value={form.text_guts}
-				placeholder="Text guts"
-				required
-			/>
-		</label>
-		<button type="submit">Submit</button>
-	</form>
-{:else if operation === 'modify'}
-	<!-- Modify Existing Form -->
-	<form method="post" action="?/submit" use:enhance>
-		<input type="hidden" name="operation" value="modify" />
-		<select name="id" bind:value={form.id} on:change={handlePostSelection}>
-			<option value="">-- select a post --</option>
-			{#each existingPosts as post}
-				<option value={post.id}>{post.text_name}</option>
-			{/each}
-		</select>
-		<br />
-		{#if images.length > 0}
-			<div>
-				{#each images as image, i (image.id)}
-					<div>
-						<img src={image.url} alt="Vaporwave" />
-						<button type="button" on:click={() => deleteImage(image.url)}>Delete</button>
-					</div>
+		<!-- Modify Existing Form -->
+	{:else if operation === 'modify'}
+		<form method="post" action="?/submit" use:enhance>
+			<input type="hidden" name="operation" value="modify" />
+			<select name="id" bind:value={form.id} on:change={handlePostSelection}>
+				<option value="">-- select a post --</option>
+				{#each existingPosts as post}
+					<option value={post.id}>{post.text_name}</option>
 				{/each}
+			</select>
+			<br />
+			{#if images.length > 0}
+				<div>
+					{#each images as image, i (image.id)}
+						<div>
+							<img src={image.url} alt="Vaporwave" />
+							<button type="button" on:click={() => deleteImage(image.url)}>Delete</button>
+						</div>
+					{/each}
+				</div>
+			{:else}
+				<p>No images found for this post.</p>
+			{/if}
+			<label>
+				Type of text:
+				<br />
+				<label>
+					<input type="radio" name="type_of_text" value="1" bind:group={form.type_of_text} /> Blog
+				</label>
+				<br />
+				<label>
+					<input type="radio" name="type_of_text" value="2" bind:group={form.type_of_text} /> Gallery
+				</label>
+			</label>
+			<br />
+			<label>
+				Date Made:
+				<input type="date" name="date_made" bind:value={form.date_made} required />
+			</label>
+			<label>
+				<br />
+				Text Name:
+				<input
+					type="text"
+					name="text_name"
+					bind:value={form.text_name}
+					placeholder="Name of text"
+					required
+				/>
+			</label>
+			<label>
+				Author:
+				<input
+					type="text"
+					name="author"
+					bind:value={form.author}
+					placeholder="Name of author"
+					required
+				/>
+			</label>
+			<label>
+				Categories:
+				<input
+					type="text"
+					name="categories"
+					bind:value={form.categories}
+					placeholder="Categories"
+					required
+				/>
+			</label>
+			<label>
+				Status:
+				<input type="text" name="status" bind:value={form.status} placeholder="Status" required />
+			</label>
+			<label>
+				Text:
+				<input
+					type="text"
+					name="text_guts"
+					bind:value={form.text_guts}
+					placeholder="Text guts"
+					required
+				/>
+			</label>
+			<br />
+			<div class="window-content">
+				<button class="win_95_butt" type="submit">Submit</button>
 			</div>
-		{:else}
-			<p>No images found for this post.</p>
-		{/if}
-		<label>
-			Type of text:
-			<label>
-				<input type="radio" name="type_of_text" value="1" bind:group={form.type_of_text} /> Blog
-			</label>
-			<label>
-				<input type="radio" name="type_of_text" value="2" bind:group={form.type_of_text} /> Gallery
-			</label>
-		</label>
-
-		<label>
-			Date Made:
-			<input type="date" name="date_made" bind:value={form.date_made} required />
-		</label>
-		<label>
-			Text Name:
-			<input
-				type="text"
-				name="text_name"
-				bind:value={form.text_name}
-				placeholder="Name of text"
-				required
-			/>
-		</label>
-		<label>
-			Author:
-			<input
-				type="text"
-				name="author"
-				bind:value={form.author}
-				placeholder="Name of author"
-				required
-			/>
-		</label>
-		<label>
-			Categories:
-			<input
-				type="text"
-				name="categories"
-				bind:value={form.categories}
-				placeholder="Categories"
-				required
-			/>
-		</label>
-		<label>
-			Status:
-			<input type="text" name="status" bind:value={form.status} placeholder="Status" required />
-		</label>
-		<label>
-			Text:
-			<input
-				type="text"
-				name="text_guts"
-				bind:value={form.text_guts}
-				placeholder="Text guts"
-				required
-			/>
-		</label>
-		<button type="submit">Submit</button>
-	</form>
-{/if}
-
-<a href="/account">Go to your account page</a>
-
-<!-- Logout Button -->
-<button on:click={handleLogout}>Logout</button>
+		</form>
+	{/if}
+</div>
 
 <style>
 	img {

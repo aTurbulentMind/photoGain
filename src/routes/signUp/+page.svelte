@@ -20,35 +20,54 @@
 	<title>User Management</title>
 </svelte:head>
 
-<form class="row flex flex-center" method="POST" use:enhance={handleSubmit}>
-	<div class="col-6 form-widget">
-		<h1 class="header">Supabase + SvelteKit</h1>
-		<p class="description">Sign in via magic link with your email below</p>
-		{#if form?.message !== undefined}
-			<div class="success {form?.success ? '' : 'fail'}">
-				{form?.message}
-			</div>
-		{/if}
-		<div>
-			<label for="email">Email address</label>
-			<input
-				id="email"
-				name="email"
-				class="inputField"
-				type="email"
-				placeholder="Your email"
-				value={form?.email ?? ''}
-			/>
+<h4>Hello :)</h4>
+
+<div class="head_Line">
+	<h1>User Management</h1>
+</div>
+
+<form class="form" method="POST" use:enhance={handleSubmit}>
+	<div class="win_95">
+		<div class="title-bar">
+			<div class="title-bar-text">Sign in</div>
 		</div>
-		{#if form?.errors?.email}
-			<span class="flex items-center text-sm error">
-				{form?.errors?.email}
-			</span>
-		{/if}
-		<div>
-			<button class="button primary block">
-				{loading ? 'Loading' : 'Send magic link'}
-			</button>
+		<br />
+		<br />
+		<div class="window-content">
+			<p>Sign in via magic link with your email below</p>
+			{#if form?.message !== undefined}
+				<div>
+					{form?.message}
+				</div>
+			{/if}
+			<div>
+				<label for="email">Email address</label>
+				<input
+					id="email"
+					name="email"
+					type="email"
+					placeholder="Your email"
+					value={form?.email ?? ''}
+				/>
+			</div>
+			{#if form?.errors?.email}
+				<span>
+					{form?.errors?.email}
+				</span>
+			{/if}
+			<div>
+				<button class="win_95_butt">
+					{loading ? 'Loading' : 'Send link'}
+				</button>
+			</div>
 		</div>
 	</div>
 </form>
+
+<style>
+	.win_95 {
+		height: 70vh;
+		width: 90vw;
+		margin: 0;
+	}
+</style>
