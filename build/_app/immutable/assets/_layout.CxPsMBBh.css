@@ -1,1 +1,0 @@
-button.svelte-1o6iggl{all:unset}meni.svelte-1o6iggl{display:flex;& ul:where(.svelte-1o6iggl){position:fixed;display:flex;margin:50vh -2vw;transform:rotate(270deg);width:8vw;& li:where(.svelte-1o6iggl){list-style:none;cursor:pointer;padding:0 2vw;border-right:1px solid var(--back_Hallow)}}}.selected.svelte-1o6iggl{background-color:var(--back_Alt);color:var(--back_Main)}
