@@ -7,6 +7,7 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
   const { session } = await safeGetSession()
 
   if (!session) {
+    await supabase.auth.getUser()
     redirect(303, '/')
   }
 
@@ -25,7 +26,7 @@ export const actions: Actions = {
     const fullName = formData.get('fullName') as string
     const username = formData.get('username') as string
     const website = formData.get('website') as string
-    const avatarUrl = formData.get('avatarUrl') as string
+    // const avatarUrl = formData.get('avatarUrl') as string
 
     const { session } = await safeGetSession()
 
@@ -34,7 +35,7 @@ export const actions: Actions = {
       full_name: fullName,
       username,
       website,
-      avatar_url: avatarUrl,
+      // avatar_url: avatarUrl,
       updated_at: new Date(),
     })
 
@@ -43,7 +44,7 @@ export const actions: Actions = {
         fullName,
         username,
         website,
-        avatarUrl,
+        // avatarUrl,
       })
     }
 
@@ -51,7 +52,7 @@ export const actions: Actions = {
       fullName,
       username,
       website,
-      avatarUrl,
+      // avatarUrl,
     }
   },
   signout: async ({ locals: { supabase, safeGetSession } }) => {
