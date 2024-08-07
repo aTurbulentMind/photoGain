@@ -3,9 +3,6 @@
 	import { enhance } from '$app/forms'
 	import type { SubmitFunction } from '@sveltejs/kit'
 
-	// Import the new component
-	import Avatar from './Avatar.svelte'
-
 	export let data
 	export let form
 
@@ -17,7 +14,6 @@
 	let fullName: string = profile?.full_name ?? ''
 	let username: string = profile?.username ?? ''
 	let website: string = profile?.website ?? ''
-	// let avatarUrl: string = profile?.avatar_url ?? ''
 
 	// Log the session and profile data
 	console.log('Session:', session)
@@ -48,17 +44,6 @@
 <div class="head_Line">
 	<h1>Account</h1>
 </div>
-
-<!-- <div class="avatar">
-	<Avatar
-		{supabase}
-		bind:url={avatarUrl}
-		size={15}
-		on:upload={() => {
-			profileForm.requestSubmit()
-		}}
-	/>
-</div> -->
 
 <div class="win_95">
 	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
@@ -115,9 +100,3 @@
 <div class="win_95">
 	<a class="win_95_butt" href="/usr_profile">Go to your admin dashboard</a>
 </div>
-
-<style>
-	.avatar {
-		margin: 5vh 22.5vw;
-	}
-</style>
