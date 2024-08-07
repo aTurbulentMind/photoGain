@@ -11,6 +11,16 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
     }
   }
 
+    const { data: profile, error: profileError } = await supabase
+    .from('profiles')
+    .select('usr_lvl')
+    .eq('id', session.user.id)
+    .single();
+
+  if (profileError || profile.usr_lvl < 4) {
+    redirect(303, '/');
+  }
+
   const { data: existingPosts, error } = await supabase.from('Allthestuff').select('*');
   if (error) {
     console.error('Error fetching posts:', error.message);

@@ -177,7 +177,7 @@
 	}
 
 	/* Laptop styles */
-	@media only screen and (min-width: 767px) {
+	@media only screen and (min-width: 1024px) {
 		nav {
 			display: flex;
 		}
@@ -196,7 +196,7 @@
 		} */
 
 		.navbar ul {
-			flex-direction: row;
+			flex-direction: row-reverse;
 			gap: 2rem;
 			margin: 0 2vw;
 		}

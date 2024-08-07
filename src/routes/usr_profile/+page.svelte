@@ -22,19 +22,19 @@
 
 	let loading = false
 
-	const handleSubmit: SubmitFunction = () => {
-		loading = true
-		return async () => {
-			loading = false
-		}
-	}
+	// const handleSubmit: SubmitFunction = () => {
+	// 	loading = true
+	// 	return async () => {
+	// 		loading = false
+	// 	}
+	// }
 
 	async function handlePostSelection() {
 		const selectedPost = existingPosts.find((post) => post.id === form.id)
 		if (selectedPost) {
 			form = {
 				...form,
-				date_made: selectedPost.date_made,
+				date_made: new Date(selectedPost.date_made).toISOString().slice(0, 10),
 				text_name: selectedPost.text_name,
 				author: selectedPost.author,
 				categories: selectedPost.categories,
@@ -182,7 +182,7 @@
 
 		<!-- Modify Existing Form -->
 	{:else if operation === 'modify'}
-		<form method="post" action="?/submit" use:enhance>
+		<form method="post" action="?/submit" use:enhance enctype="multipart/form-data">
 			<input type="hidden" name="operation" value="modify" />
 			<select name="id" bind:value={form.id} on:change={handlePostSelection}>
 				<option value="">-- select a post --</option>
@@ -193,16 +193,25 @@
 			<br />
 			{#if images.length > 0}
 				<div>
-					{#each images as image, i (image.id)}
-						<div>
-							<img src={image.url} alt="Vaporwave" />
-							<button type="button" on:click={() => deleteImage(image.url)}>Delete</button>
-						</div>
-					{/each}
+					<label
+						>Images Found:
+						{#each images as image, i (image.id)}
+							<div>
+								<img src={image.url} alt="Vaporwave" />
+								<button type="button" on:click={() => deleteImage(image.url)}>Delete</button>
+							</div>
+						{/each}
+					</label>
 				</div>
 			{:else}
 				<p>No images found for this post.</p>
 			{/if}
+
+			<label>
+				Images to add:
+				<input type="file" name="images" id="image-upload" multiple on:change={handleFileChange} />
+			</label>
+			<br />
 			<label>
 				Type of text:
 				<br />
@@ -219,6 +228,7 @@
 				Date Made:
 				<input type="date" name="date_made" bind:value={form.date_made} required />
 			</label>
+
 			<label>
 				<br />
 				Text Name:
@@ -230,6 +240,7 @@
 					required
 				/>
 			</label>
+			<br />
 			<label>
 				Author:
 				<input
@@ -275,6 +286,12 @@
 			</div>
 		</form>
 	{/if}
+	<br />
+	<br />
+	<!-- Logout Button -->
+	<div class="window-content">
+		<button class="win_95_butt" on:click={handleLogout}>Logout</button>
+	</div>
 </div>
 
 <!-- svelte-ignore css-unused-selector -->
