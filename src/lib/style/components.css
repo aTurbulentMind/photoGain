@@ -148,62 +148,8 @@
             padding: 0;
 		}
 	}
-
+/* 
 /* Form  */
-form {
-		position: absolute;
-		top: 45vh;
-		left: 5vw;
-		width: 90vw;
-		height: 50vh;
-
-		& h2 {
-			font-size: var(--f_m);
-			margin: 0;
-			margin-top: -10vh;
-		}
-
-		& p {
-			position: relative;
-			top: -5vh;
-			left: 0.01vw;
-			margin-top: 4.25vh;
-			padding: 0 5vw 0 0;
-			text-align: left;
-		}
-
-		& input {
-			position: absolute;
-			right: 7vw;
-			width: 55vw;
-			height: 3vh;
-			font-size: var(--font);
-			margin-top: 4vh;
-		}
-
-		& .text_Message {
-			margin-top: -3vh;
-		}
-
-		& button {
-			position: absolute;
-			background: var(--highlight);
-			width: fit-content;
-			padding: 1%;
-			bottom: 4vh;
-			left: 35vw;
-			font-size: var(--f_m);
-			border-radius: var(--rad);
-			font-weight: 700;
-			&&:hover {
-				transition: all 0.3s ease-in-out;
-				transform: scale(1.1);
-				cursor: pointer;
-				box-shadow: var(--box_Light);
-			}
-		}
-		}
-
 
 
 /* Windows 95 theme  box*/
