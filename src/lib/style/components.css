@@ -241,6 +241,16 @@
             border-color: var(--win95-border-medium);
     }
     }
+
+        @media (min-width: 767px) {
+                width: 50vw;
+                margin: 0 25vw;
+    } 
+
+            @media (min-width: 1024px) {
+                width: 35vw;
+                margin: 0 32.5vw;
+    } 
 }
 
 
