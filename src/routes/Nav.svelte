@@ -66,12 +66,8 @@
 </div>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-	}
-
 	.navbar {
-		background: linear-gradient(100deg, #f14ac5, #280d88);
+		background: var(--gradient_Flip);
 		width: 100vw;
 		display: flex;
 		justify-content: space-between;
@@ -181,7 +177,7 @@
 	}
 
 	/* Laptop styles */
-	@media only screen and (min-width: 769px) {
+	@media only screen and (min-width: 767px) {
 		nav {
 			display: flex;
 		}

@@ -87,14 +87,6 @@
 	</form>
 
 	<br />
-
-	<div class="window-content">
-		<form method="post" action="?/signout" use:enhance={handleSignOut}>
-			<div>
-				<button class="win_95_butt" disabled={loading}>Sign Out</button>
-			</div>
-		</form>
-	</div>
 </div>
 
 <div class="win_95">
