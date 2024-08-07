@@ -1,6 +1,5 @@
 <!-- src/routes/account/+page.svelte -->
 <script lang="ts">
-	import '$lib/style/baseCamp.svelte'
 	import { enhance } from '$app/forms'
 	import type { SubmitFunction } from '@sveltejs/kit'
 
