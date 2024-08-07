@@ -88,101 +88,15 @@
 
 	<br />
 
-
+	<div class="window-content">
+		<form method="post" action="?/signout" use:enhance={handleSignOut}>
+			<div>
+				<button class="win_95_butt" disabled={loading}>Sign Out</button>
+			</div>
+		</form>
+	</div>
 </div>
 
 <div class="win_95">
 	<a class="win_95_butt" href="/usr_profile">Go to your admin dashboard</a>
 </div>
-
-<style>
-	/* Windows 95 theme  box*/
-	:root {
-		--win95-background: hwb(210 76% 20%);
-		--win95-border-light: hwb(234 96% 0%);
-		--win95-border-dark: hwb(241 3% 39%);
-		--win95-border-medium: hwb(0 65% 35%);
-		--win95-text: hwb(240 0% 97%);
-		--win95-border-width: 2px;
-
-		--win95-Fade: linear-gradient(to right, var(--win95-border-dark), var(--win95-border-medium));
-
-		--win95-padding: 10px;
-		--win95-marg: 5px;
-	}
-
-	.win_95 {
-		position: relative;
-		width: 80vw;
-		margin-left: 10vw;
-		background: var(--win95-background);
-		border: var(--win95-border-width) solid var(--win95-text);
-		border-top-color: var(--win95-border-light);
-		border-left-color: var(--win95-border-light);
-		box-shadow: var(--box_Shadow);
-		color: var(--win95-text);
-		font-size: var(--f_m);
-		padding: var(--pad);
-
-		& .title-bar {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			background: var(--win95-border-dark);
-			border-bottom: var(--win95-border-width) solid var(--win95-Fade);
-			color: var(--win95-border-light);
-			padding: 0 5px;
-			margin: -3%;
-			font-weight: bold;
-
-			& .title-bar-text {
-				font-size: var(--f_lg);
-				padding: var(--pad);
-				text-shadow: none;
-			}
-
-			& .title-bar-controls {
-				& button {
-					display: flex;
-					width: 30px;
-					height: 30px;
-					background: var(--win95-background);
-					border: var(--win95-border-width) solid var(--win95-text);
-					border-top-color: var(--win95-border-light);
-					border-left-color: var(--win95-border-light);
-					justify-content: center;
-					align-items: center;
-					font-size: var(--f_m);
-					text-shadow: none;
-					font-weight: bold;
-					cursor: pointer;
-				}
-			}
-		}
-
-		& .window-content {
-			& p {
-				margin: var(--marg_xl);
-				font-size: var(--f_m);
-				text-shadow: none;
-			}
-
-			& .win_95_butt {
-				background: var(--win95-background);
-				border: var(--win95-border-width) solid var(--win95-text);
-				border-top-color: var(--win95-border-light);
-				border-left-color: var(--win95-border-light);
-				padding: var(--pad_sm);
-				margin: var(--bok_Sd);
-				position: center;
-				color: var(--win95-text);
-				font-size: var(--f_m);
-				cursor: pointer;
-			}
-
-			& .win_95_butt:hover {
-				border-color: var(--win95-border-medium);
-			}
-		}
-	}
-</style>

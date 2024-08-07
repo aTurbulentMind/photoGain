@@ -94,6 +94,7 @@
 <br />
 <a class="bord_Caps" href="/blog/library/">Older words</a>
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
 	a {
 		margin: 5vh 35vw;

@@ -34,6 +34,7 @@
 
 <p>Loading most recent articles...(in the future. They are not actually loading right now)</p>
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
 	.blog-container {
 		max-width: 90vw;

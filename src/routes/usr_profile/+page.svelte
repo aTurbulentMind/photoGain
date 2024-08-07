@@ -272,6 +272,7 @@
 	{/if}
 </div>
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
 	img {
 		width: 25%;

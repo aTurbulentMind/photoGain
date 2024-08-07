@@ -3,8 +3,12 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession } }) => {
   const { session } = await safeGetSession();
-  if (!session) {
-    return redirect(303, '/');
+
+    if (!session) {
+    const { data: user, error } = await supabase.auth.getUser();
+    if (error || !user) {
+      redirect(303, '/');
+    }
   }
 
   const { data: existingPosts, error } = await supabase.from('Allthestuff').select('*');
@@ -18,7 +22,12 @@ export const load: PageServerLoad = async ({ locals: { supabase, safeGetSession 
 export const actions: Actions = {
   submit: async ({ request, locals: { supabase, safeGetSession } }) => {
     const { session } = await safeGetSession();
-    if (!session) return fail(401, { error: 'Unauthorized' });
+    if (!session) {
+      const { data: user, error } = await supabase.auth.getUser();
+      if (error || !user) {
+        return fail(401, { error: 'Unauthorized' });
+      }
+    }
 
     const formData = await request.formData();
     const operation = formData.get('operation');

@@ -88,6 +88,7 @@
 	{/if}
 </div>
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
 	.gallery-container {
 		width: 100vw;

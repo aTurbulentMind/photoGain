@@ -32,6 +32,7 @@
 </meni>
 <slot />
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
 	button {
 		all: unset;
