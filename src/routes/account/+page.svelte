@@ -40,53 +40,66 @@
 </svelte:head>
 
 <h4>Hello :)</h4>
-<section class="head_Line">
+
+<div class="head_Line">
 	<h1>Account</h1>
-</section>
+</div>
 
-<article class="win_95">
+<div class="win_95">
 	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
-		<header class="title-bar">
-			<h2 class="title-bar-text">Account</h2>
-		</header>
+		<div class="title-bar">
+			<div class="title-bar-text">Account</div>
+		</div>
 
-		<main class="window-content">
+		<div class="window-content">
 			<p>Account details</p>
+		</div>
+		<div>
 			<label for="email">Email</label>
 			<input id="email" type="text" value={session.user.email} disabled />
-			<br />
+		</div>
+
+		<div>
 			<label for="fullName">Full Name</label>
 			<input id="fullName" name="fullName" type="text" value={form?.fullName ?? fullName} />
+		</div>
 
+		<div>
 			<label for="username">Username</label>
 			<input id="username" name="username" type="text" value={form?.username ?? username} />
+		</div>
 
+		<div>
 			<label for="website">Website</label>
 			<input id="website" name="website" type="url" value={form?.website ?? website} />
+		</div>
 
-			<br />
+		<br />
 
+		<div class="window-content">
 			<input
 				type="submit"
 				class="win_95_butt"
 				value={loading ? 'Loading...' : 'Update'}
 				disabled={loading}
 			/>
-		</main>
+		</div>
 	</form>
 
 	<br />
 
-	<aside class="window-content">
+	<div class="window-content">
 		<form method="post" action="?/signout" use:enhance={handleSignOut}>
-			<button class="win_95_butt" disabled={loading}>Sign Out</button>
+			<div>
+				<button class="win_95_butt" disabled={loading}>Sign Out</button>
+			</div>
 		</form>
-	</aside>
-</article>
+	</div>
+</div>
 
-<nav class="win_95">
+<div class="win_95">
 	<a class="win_95_butt" href="/usr_profile">Go to your admin dashboard</a>
-</nav>
+</div>
 
 <style>
 	/* Windows 95 theme  box*/
