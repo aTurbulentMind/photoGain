@@ -251,6 +251,11 @@
                 width: 35vw;
                 margin: 0 32.5vw;
     } 
+
+	                @media (min-width: 1440px) {
+                width: 25vw;
+                margin: 0 37.5vw;
+    } 
 }
 
 
