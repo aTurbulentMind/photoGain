@@ -241,6 +241,7 @@
 				/>
 			</label>
 			<label>
+				<br />
 				Categories:
 				<input
 					type="text"
@@ -251,21 +252,25 @@
 				/>
 			</label>
 			<label>
+				<br />
 				Status:
 				<input type="text" name="status" bind:value={form.status} placeholder="Status" required />
 			</label>
+			<br />
 			<label>
 				Text:
-				<input
+				<br />
+				<textarea
 					type="text"
 					name="text_guts"
 					bind:value={form.text_guts}
-					placeholder="Text guts"
+					placeholder="You can make this box bigger"
 					required
-				/>
+				></textarea>
 			</label>
 			<br />
 			<div class="window-content">
+				<br />
 				<button class="win_95_butt" type="submit">Submit</button>
 			</div>
 		</form>
@@ -276,5 +281,14 @@
 <style>
 	img {
 		width: 25%;
+	}
+
+	label {
+		font-size: var(--font);
+	}
+
+	textarea {
+		width: 90%;
+		height: 200px;
 	}
 </style>
