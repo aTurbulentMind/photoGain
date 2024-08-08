@@ -72,6 +72,7 @@
 	{#if showModal}
 		<div class="modal-background">
 			<div class="modal">
+				<button on:click={() => (showModal = false)}>Close</button>
 				<h2>{selectedGallery}</h2>
 				{#if selectedGalleryImages.length > 0}
 					<div class="carousel-container">
@@ -82,7 +83,6 @@
 				{:else}
 					<p aria-live="polite">Loading gallery images...</p>
 				{/if}
-				<button on:click={() => (showModal = false)}>Close</button>
 			</div>
 		</div>
 	{/if}
@@ -190,13 +190,18 @@
 		border: 2px solid #ff77a9;
 		border-radius: 10px;
 		max-width: 80%;
-		max-height: 80%;
+		max-height: 90%;
 		overflow-y: auto;
 	}
 
 	.modal img {
-		width: 100%;
+		width: 70%;
 		margin-bottom: 10px;
+
+		/* Larger screens */
+		@media only screen and (min-width: 1440px) {
+			width: 50%;
+		}
 	}
 
 	.modal button {

@@ -7,6 +7,11 @@
 		const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
 		return new Date(dateString).toLocaleDateString(undefined, options)
 	}
+
+	function formatTextGuts(text) {
+		// Replace newlines with <br> tags for line breaks
+		return text.replace(/\n/g, '<br />')
+	}
 </script>
 
 <div class="head_Line">
@@ -18,7 +23,7 @@
 		<h2 class="blog-title">{recentArticles[0].text_name}</h2>
 		<p class="highlight"><strong>Date:</strong> {formatDate(recentArticles[0].date_made)}</p>
 		<div class="blog-content">
-			<p>{recentArticles[0].text_guts}</p>
+			<p>{@html formatTextGuts(recentArticles[0].text_guts)}</p>
 		</div>
 	{:else}
 		<p>Loading most recent article...</p>
@@ -35,6 +40,12 @@
 		border-radius: 8px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 		background-color: var(--back_Hallow_Dark);
+
+		/* Larger screens */
+		@media only screen and (min-width: 1440px) {
+			max-width: 80vw;
+			margin-left: 10vw;
+		}
 	}
 
 	.blog-title {

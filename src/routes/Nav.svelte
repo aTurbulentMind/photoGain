@@ -57,6 +57,9 @@
 				</button>
 			</li>
 		</ul>
+		<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
+			<a class:current={current === 7} on:click={() => (current = 7)} href="/signUp"> Login </a>
+		</button>
 	</nav>
 	<button on:click={toggleMenu} on:keydown={() => (isMenuOpen = false)}>
 		<div class="burger">
@@ -67,16 +70,15 @@
 
 <style>
 	.navbar {
-		background: var(--gradient_Flip);
+		background: var(--gradient_Alt);
 		width: 100vw;
 		display: flex;
 		justify-content: space-between;
 		position: fixed;
 		height: 5rem;
 		z-index: 950;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 		transition: transform 0.2s ease-in-out;
-		border-bottom: 2px solid var(--extra);
+		border-bottom: 2px solid var(--highlight);
 	}
 
 	.navbar button {
@@ -159,9 +161,9 @@
 		position: absolute;
 		top: 100%;
 		left: 0;
-		background: linear-gradient(80deg, #ff6fd8, #3813c2);
+		background: var(--gradient_Alt);
 		width: 100%;
-		border-top: 2px solid var(--extra);
+		border-top: 2px solid var(--highlight);
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 	}
 
@@ -172,7 +174,7 @@
 		left: 0;
 		width: 100%;
 		height: 2px;
-		background-color: var(--extra);
+		background-color: var(--highlight);
 		box-shadow: 0 0 10px rgba(255, 119, 169, 0.8);
 	}
 
@@ -198,7 +200,7 @@
 		.navbar ul {
 			flex-direction: row-reverse;
 			gap: 2rem;
-			margin: 0 2vw;
+			margin: 0 15vw;
 		}
 	}
 
@@ -211,7 +213,7 @@
 
 		.navbar ul {
 			gap: 3rem;
-			margin: 0 3vw;
+			margin: 0 22vw;
 		}
 	}
 </style>

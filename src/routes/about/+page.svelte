@@ -1,18 +1,21 @@
 <script>
-	import Jax from '$lib/assets/img/jax.jpg'
+	import Jax from '$lib/assets/img/enzz.jpg'
 	import Nextem from '$lib/assets/img/envv.jpg'
 </script>
 
+<svelte:head>
+	<title>About</title>
+</svelte:head>
+
 <h4>Hello :)</h4>
 
-<div class="head_Line">
+<img class="leader" src={Jax} alt="background" />
+<section class="head_Line">
 	<h1>About</h1>
-</div>
+</section>
 
-<img_Intro>
-	<img src={Jax} alt="background" />
-
-	<div class="text_Block">
+<figure class="img_Intro">
+	<article>
 		<p class="text_Box glass_Back">
 			Wandering through the lush forests and foggy coastlines, they capture the essence of the
 			Pacific Northwest with a twist. Their camera is an extension of his imaginative mind, framing
@@ -22,7 +25,7 @@
 			nostalgia meets neon.
 		</p>
 
-		<p class="text_Box glass_Back">
+		<p class="glass_Back">
 			But their charm doesn't stop at the photography. They are the kind of person who'll show up to
 			a shoot in a vintage windbreaker, humming synthwave tunes, and cracking jokes that make you
 			laugh till your sides hurt. The studio is a treasure trove of retro gadgets, cassette tapes,
@@ -30,13 +33,13 @@
 			eclectic personality. Every session with them is an adventure, a journey through time and
 			space where the boundaries of reality blur and the extraordinary becomes the norm.
 		</p>
-	</div>
-</img_Intro>
+	</article>
+</figure>
 
-<div class="text_Block">
+<section>
 	<img class="backBack" src={Nextem} alt="background" />
-	<p class="text_Box cut_Box overLay glass_Back">
-		In a world that's constantly racing forward, they invites you to hit pause and step into his
+	<p class=" cut_Box overLay glass_Back">
+		In a world that's constantly racing forward, they invite you to hit pause and step into his
 		vibrant, vaporwave wonderland. These photographs are not just images; they're
 		experiences—whimsical, nostalgic, and unapologetically fun.
 		<br /><br />
@@ -44,11 +47,12 @@
 		sunset and wrapped in the warmth of infectious curiosity, grab your windbreaker and your sense of
 		wonder. It's time for a photo shoot that transcends the ordinary and embraces the extraordinary.
 	</p>
-</div>
+</section>
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
 	/* Phone size / base */
-	img_Intro img {
+	.leader {
 		object-fit: cover;
 		width: 100vw;
 	}

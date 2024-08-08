@@ -8,9 +8,8 @@
 	<h1>Services</h1>
 </div>
 
-<div class="text_Block">
-	<img class="backBack" src={Nextem} alt="background" />
-	<p class="text_Box overLay glass_Back">
+<main>
+	<p class=" overLay glass_Back">
 		Exciting developments are on the horizon! We are thrilled to announce that services like
 		appointments for photo and video shoots will soon be available. This addition will allow clients
 		to easily schedule and manage their sessions with our talented team. Whether you're looking for
@@ -26,23 +25,17 @@
 		service and look forward to offering this new feature to enhance your experience with us. Keep an
 		eye out for the official launch and be ready to book your shoots with ease and confidence.
 	</p>
-</div>
+</main>
 
 <style>
 	/* Phone size / base */
 	p {
+		color: var(--text_Main);
 		text-shadow: var(--text_Light);
 	}
 
-	.text_Block .overLay {
-		margin-top: -90vh;
+	.overLay {
 		font-size: var(--font);
-	}
-
-	.backBack {
-		object-fit: cover;
-		height: 100vh;
-		width: 100vw;
 	}
 
 	/* Tablet size 

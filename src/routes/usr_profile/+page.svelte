@@ -168,13 +168,9 @@
 			<br />
 			<label>
 				Text:
-				<input
-					type="text"
-					name="text_guts"
-					bind:value={form.text_guts}
-					placeholder="Text guts"
-					required
-				/>
+				<br />
+				<textarea name="text_guts" bind:value={form.text_guts} placeholder="Text guts" required
+				></textarea>
 			</label>
 			<br />
 			<button type="submit">Submit</button>
@@ -307,5 +303,35 @@
 	textarea {
 		width: 90%;
 		height: 200px;
+	}
+
+	.win_95 {
+		@media (min-width: 1024px) {
+			width: 60vw;
+			margin: var(--bok_Lrg);
+
+			& .title-bar {
+				margin: -1.5%;
+			}
+		}
+
+		@media (min-width: 1440px) {
+			width: 60vw;
+			margin: var(--bok_Lrg);
+
+			& .title-bar {
+				margin: -1%;
+			}
+		}
+	}
+
+	.win_95_butt {
+		margin: var(--bok_Qtr);
+		font-size: var(--f_m);
+		padding: var(--pad);
+
+		@media (min-width: 766px) {
+			margin: var(--bok_Lrg);
+		}
 	}
 </style>

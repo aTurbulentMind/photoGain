@@ -18,14 +18,23 @@
 		const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
 		return new Date(dateString).toLocaleDateString(undefined, options)
 	}
+
+	function formatTextGuts(text) {
+		// Replace newlines with <br> tags for line breaks
+		return text.replace(/\n/g, '<br />')
+	}
 </script>
 
-<div class="head_Line">
-	<h1>Blog</h1>
-</div>
+<svelte:head>
+	<title>Blog</title>
+</svelte:head>
 
-<div class="text_Block">
-	<p class="text_Box cut_Box">
+<section class="head_Line">
+	<h1>Blog</h1>
+</section>
+
+<article>
+	<p class="cut_Box">
 		The Vaporwave Photographer's Blog is a mesmerizing journey into the world of retro aesthetics,
 		blending vibrant neon hues, nostalgic elements, and modern digital art. This unique blog
 		captures the essence of the vaporwave genre, transporting readers to an era where past and
@@ -43,7 +52,7 @@
 	</p>
 
 	<h2>Most Recent Articles</h2>
-	<div class="text_Block">
+	<section>
 		{#if recentArticles && recentArticles.length > 0}
 			<ul>
 				{#each recentArticles as article, index}
@@ -58,22 +67,22 @@
 						</button>
 
 						{#if showModal && selectedIndex === index}
-							<div class="win_95">
-								<div class="title-bar">
-									<div class="title-bar-text">{selectedArticle.text_name}</div>
-									<div class="title-bar-controls">
+							<article class="win_95">
+								<header class="title-bar">
+									<h3 style="margin: 0;" class="title-bar-text">{selectedArticle.text_name}</h3>
+									<nav class="title-bar-controls">
 										<button aria-label="Close" on:click={() => (showModal = false)}>X</button>
-									</div>
-								</div>
-								<div class="window-content">
+									</nav>
+								</header>
+								<section class="window-content">
 									<p class="highlight">
 										<strong>Date:</strong>
 										{formatDate(recentArticles[0].date_made)}
 									</p>
 									<p><strong>Author:</strong> {selectedArticle.author}</p>
-									<p>{selectedArticle.text_guts}</p>
-								</div>
-							</div>
+									<p>{@html formatTextGuts(selectedArticle.text_guts)}</p>
+								</section>
+							</article>
 						{/if}
 					</li>
 				{/each}
@@ -81,16 +90,16 @@
 		{:else}
 			<p aria-live="polite">Loading recent articles...</p>
 		{/if}
-	</div>
+	</section>
 
 	<br /> <br />
-	<p class="text_Box cut_Box">Check out the last thing I wrote:</p>
+	<p class=" cut_Box">Check out the last thing I wrote:</p>
 	<br />
 	<a class="bord_Caps" href="/blog/recent/">Newest words</a>
-</div>
+</article>
 
 <br /> <br />
-<p class="text_Box cut_Box">Or look into a library of the past:</p>
+<p class="cut_Box">Or look into a library of the past:</p>
 <br />
 <a class="bord_Caps" href="/blog/library/">Older words</a>
 
@@ -101,10 +110,34 @@
 		font-size: var(--f_lg);
 	}
 
+	.win_95 {
+		@media (min-width: 1024px) {
+			width: 60vw;
+			margin: var(--bok_Lrg);
+
+			& .title-bar {
+				margin: -1.5%;
+			}
+		}
+
+		@media (min-width: 1440px) {
+			width: 60vw;
+			margin: var(--bok_Lrg);
+
+			& .title-bar {
+				margin: -1%;
+			}
+		}
+	}
+
 	.win_95_butt {
 		margin: var(--bok_Qtr);
 		font-size: var(--f_m);
 		padding: var(--pad);
+
+		@media (min-width: 766px) {
+			margin: var(--bok_Lrg);
+		}
 	}
 
 	.bord_Caps {
