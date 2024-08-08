@@ -41,7 +41,7 @@
      /* borders */
     --thick: 1px ;
     --rad: 10px ;
-    --bord: 4px solid var(--extra);
+    --bord: 4px solid var(--highlight);
 
      /* shadow */
     --box_Shadow: 2px 2px 7px  hsla(233, 80%, 4%, 0.678);

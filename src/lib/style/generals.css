@@ -8,17 +8,17 @@
     
     body {
 		color: var(--text_Main);
-		background: var(--gradient_Back);
+		background: var(--gradient);
 		font-family: var(--font_Main);
     letter-spacing: var(--pad_sm);
 		line-height: 1.6;
-    text-shadow: var(--text_Shadow);
+    text-shadow: var(--text_Light);
     overflow-x: hidden;
     }
 
     a {
     text-decoration: none;
-    color: var(--back_Tre);
+    color: var(--grabber);
     font-weight: Bold;
     cursor: pointer;
 
@@ -43,22 +43,13 @@
 		padding: var(--pad_sm);
     text-align: left;
     font-size: var(--font_Hexa);
+
+            @media (min-width: 766px) {
+                    margin: var(--bok_Lrg);
+        }
     }
 
     span{
         color: var(--highlight);
     }
 
-    /* @media (min-width: 769px) {
-      h1, h3 {
-			padding: 18vh 0 5vh 26vw;
-		}
-    }
-
-
-    @media (min-width: 1280px) {
-    h1, h2, h3 {
-			font-size: var(--f_xl);
-		padding: 10vh 0 5vh 25vw;
-		}
-    } */
