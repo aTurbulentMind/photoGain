@@ -110,6 +110,29 @@
 		font-size: var(--f_lg);
 	}
 
+	h1 {
+		color: var(--grabber); /* Neon green color */
+		text-shadow:
+			0 0 5px var(--grabber),
+			0 0 10px var(--grabber),
+			0 0 20px var(--grabber),
+			0 0 40px var(--grabber),
+			0 0 80px var(--grabber);
+
+		@media (min-width: 767px) {
+			margin: 0 15vw;
+		}
+
+		@media (min-width: 1024px) {
+			margin: 0 15vw;
+		}
+
+		@media (min-width: 1440px) {
+			font-size: var(--f_xxxl);
+			margin: 5vh 10vw;
+		}
+	}
+
 	.win_95 {
 		@media (min-width: 1024px) {
 			width: 60vw;

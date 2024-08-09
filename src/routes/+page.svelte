@@ -142,10 +142,9 @@
 		display: grid;
 
 		@media screen and (min-width: 1024px) {
-			grid-template-rows: repeat(auto-fit, minmax(280px, 1fr));
 			grid-template-columns: 1fr 1fr;
 			gap: 1px;
-			margin: 10vh 1vw;
+			margin: 10vh 0;
 
 			p {
 				width: fit-content;

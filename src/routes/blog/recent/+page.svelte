@@ -42,17 +42,23 @@
 		background-color: var(--back_Hallow_Dark);
 
 		/* Larger screens */
-		@media only screen and (min-width: 1440px) {
+		@media only screen and (min-width: 1024px) {
 			max-width: 80vw;
 			margin-left: 10vw;
 		}
 	}
 
 	.blog-title {
-		color: var(--highlight);
+		font-family: var(--font_Quad);
+		color: var(--grabber);
 		font-size: var(--f_xxl);
 		text-align: center;
 		text-transform: capitalize;
+
+		@media only screen and (min-width: 1024px) {
+			font-size: var(--f_xxxl);
+			margin: 0;
+		}
 	}
 
 	.blog-content {

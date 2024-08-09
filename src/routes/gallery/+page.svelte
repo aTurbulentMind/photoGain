@@ -93,7 +93,7 @@
 	.gallery-container {
 		width: 100vw;
 		margin: 0 auto;
-		color: var(--highlight_Alt);
+		color: var(--highlight);
 		background-color: var(--back_Hallow_Dark);
 		border: 2px solid var(--highlight_Alt);
 		border-radius: 10px;
@@ -118,8 +118,16 @@
 	}
 
 	h2 {
-		color: var(--highlight);
+		color: var(--highlight); /* Neon blue color */
+		text-shadow:
+			0 0 5px var(--highlight),
+			0 0 10px var(--highlight),
+			0 0 20px var(--highlight),
+			0 0 40px var(--highlight),
+			0 0 80px var(--highlight);
 		margin-top: 20px;
+		padding: 20px;
+		font-weight: bold;
 	}
 
 	.carousel-container {
@@ -133,13 +141,11 @@
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: var(--highlight_Alt);
-			border-radius: 10px;
+			background: var(--grabber);
 		}
 
 		&::-webkit-scrollbar-track {
-			background: var(--back_Hallow_Dark);
-			border-radius: 10px;
+			background: var(--gradient);
 		}
 	}
 
