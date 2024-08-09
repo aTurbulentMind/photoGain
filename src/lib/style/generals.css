@@ -35,14 +35,23 @@
 		padding: var(--pad_xl);
     margin: var(--half_Bok);
 		font-size: var(--f_lg);
-    font-family: var(--font_Quad);
+    font-family: var(--font_Alt);
+
+    color: var(--grabber); /* Neon blue color */
+		text-shadow:
+			0 0 5px var(--grabber),
+			0 0 10px var(--grabber),
+			0 0 20px var(--grabber),
+			0 0 40px var(--grabber),
+			0 0 80px var(--grabber);
     
     @media (min-width: 767px) {
       margin: 0 15vw;
     } 
     
     @media (min-width: 1024px) {
-      margin: 0 15vw;
+            font-size: var(--f_xxl);
+      margin: var(--bok_Lrg);
     } 
     
     @media (min-width: 1440px) {
