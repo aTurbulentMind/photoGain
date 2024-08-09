@@ -30,93 +30,95 @@
 	<h1>Capturing moments in a vibrant, vaporwave aesthetic.</h1>
 </section>
 
-<p>
-	The Essence of Street Photography: also known as candid photography, thrives on unmediated chance
-	encounters and random incidents within public places. The photographer aims to capture images at
-	decisive or poignant moments by carefully framing and timing their shots. Unlike studio
-	photography, which is controlled and polished, street photography embraces authenticity and
-	rawness. It’s about documenting people in their natural environment, often without their
-	knowledge. The streets become the canvas, and the photographer’s lens reveals the beauty, chaos,
-	and human stories that unfold in public spaces.
-</p>
+<container class="grid">
+	<p>
+		The Essence of Street Photography: also known as candid photography, thrives on unmediated
+		chance encounters and random incidents within public places. The photographer aims to capture
+		images at decisive or poignant moments by carefully framing and timing their shots. Unlike
+		studio photography, which is controlled and polished, street photography embraces authenticity
+		and rawness. It’s about documenting people in their natural environment, often without their
+		knowledge. The streets become the canvas, and the photographer’s lens reveals the beauty, chaos,
+		and human stories that unfold in public spaces.
+	</p>
 
-<div class="win_95">
-	<div class="title-bar">
-		<div class="title-bar-text">Gallery</div>
-		<div class="title-bar-controls">
-			<button aria-label="Close">X</button>
+	<div class="win_95">
+		<div class="title-bar">
+			<div class="title-bar-text">Gallery</div>
+			<div class="title-bar-controls">
+				<button aria-label="Close">X</button>
+			</div>
+		</div>
+		<div class="window-content">
+			<p>Look at stopped time?</p>
+			<a href="/gallery/"><button class="win_95_butt">Yes</button></a>
+			<button class="win_95_butt">No</button>
 		</div>
 	</div>
-	<div class="window-content">
-		<p>Look at stopped time?</p>
-		<a href="/gallery/"><button class="win_95_butt">Yes</button></a>
-		<button class="win_95_butt">No</button>
-	</div>
-</div>
 
-<p>
-	Step into the dreamy, neon-lit world of vaporwave and capture your essence with a photoshoot that
-	transcends time. Embrace the retro-futuristic aesthetic where pastels meet pixelated perfection,
-	and surreal vibes reign supreme. Whether you're channeling the 80s' nostalgia or creating a
-	futuristic fantasy, our visionary photographers will craft visuals that are as unique as you are.
-	Bathe in the glow of neon lights, float through digital landscapes, and immortalize your moments
-	with a touch of aesthetic magic. Book your vaporwave photoshoot today and transform your memories
-	into timeless art.
-</p>
+	<p>
+		Step into the dreamy, neon-lit world of vaporwave and capture your essence with a photoshoot
+		that transcends time. Embrace the retro-futuristic aesthetic where pastels meet pixelated
+		perfection, and surreal vibes reign supreme. Whether you're channeling the 80s' nostalgia or
+		creating a futuristic fantasy, our visionary photographers will craft visuals that are as unique
+		as you are. Bathe in the glow of neon lights, float through digital landscapes, and immortalize
+		your moments with a touch of aesthetic magic. Book your vaporwave photoshoot today and transform
+		your memories into timeless art.
+	</p>
 
-<div class="win_95">
-	<div class="title-bar">
-		<div class="title-bar-text">Read Stuff</div>
-		<div class="title-bar-controls">
-			<button aria-label="Close">X</button>
+	<div class="win_95">
+		<div class="title-bar">
+			<div class="title-bar-text">Read Stuff</div>
+			<div class="title-bar-controls">
+				<button aria-label="Close">X</button>
+			</div>
+		</div>
+		<div class="window-content">
+			<p>Read some words today!</p>
+			<a href="/blog/"><button class="win_95_butt">Yes</button></a>
+			<button href="/" class="win_95_butt">No</button>
 		</div>
 	</div>
-	<div class="window-content">
-		<p>Read some words today!</p>
-		<a href="/blog/"><button class="win_95_butt">Yes</button></a>
-		<button href="/" class="win_95_butt">No</button>
-	</div>
-</div>
 
-<p>
-	Meet our protagonist, a whimsical shutterbug from the misty, magical realms of the Pacific
-	Northwest. Picture this: a quirky, spirited soul who sees the world through a lens tinted with
-	hues of neon pink, electric blue, and shimmering violet. Our character isn't just any
-	photographer—they are a connoisseur of the vaporwave aesthetic, transforming everyday scenes into
-	dreamy, retro-futuristic masterpieces that look like the world has been plucked straight from an
-	80s arcade fever dream.
-</p>
+	<p>
+		Meet our protagonist, a whimsical shutterbug from the misty, magical realms of the Pacific
+		Northwest. Picture this: a quirky, spirited soul who sees the world through a lens tinted with
+		hues of neon pink, electric blue, and shimmering violet. Our character isn't just any
+		photographer—they are a connoisseur of the vaporwave aesthetic, transforming everyday scenes
+		into dreamy, retro-futuristic masterpieces that look like the world has been plucked straight
+		from an 80s arcade fever dream.
+	</p>
 
-<div class="win_95">
-	<div class="title-bar">
-		<div class="title-bar-text">Story</div>
-		<div class="title-bar-controls">
-			<button aria-label="Close">X</button>
+	<div class="win_95">
+		<div class="title-bar">
+			<div class="title-bar-text">Story</div>
+			<div class="title-bar-controls">
+				<button aria-label="Close">X</button>
+			</div>
+		</div>
+		<div class="window-content">
+			<p>Learn about our protagonist</p>
+			<a href="/about/"><button class="win_95_butt">Yes</button></a>
+			<button class="win_95_butt">No</button>
 		</div>
 	</div>
-	<div class="window-content">
-		<p>Learn about our protagonist</p>
-		<a href="/about/"><button class="win_95_butt">Yes</button></a>
-		<button class="win_95_butt">No</button>
-	</div>
-</div>
 
-<div>
+	<!-- <div>
 	<h2>Sign up for stuff today!</h2>
-</div>
-<div class="win_95">
-	<div class="title-bar">
-		<div class="title-bar-text">Signup!</div>
-		<div class="title-bar-controls">
-			<button aria-label="Close">X</button>
-		</div>
 	</div>
-	<div class="window-content">
-		<p>Sign your life away now!</p>
-		<a href="/signUp/"><button class="win_95_butt">Yes</button></a>
-		<a href="/signUp/"><button class="win_95_butt">No</button></a>
-	</div>
-</div>
+	<div class="win_95">
+		<div class="title-bar">
+			<div class="title-bar-text">Signup!</div>
+			<div class="title-bar-controls">
+				<button aria-label="Close">X</button>
+			</div>
+			</div>
+			<div class="window-content">
+				<p>Sign your life away now!</p>
+				<a href="/signUp/"><button class="win_95_butt">Yes</button></a>
+				<a href="/signUp/"><button class="win_95_butt">No</button></a>
+				</div> 
+				</div>-->
+</container>
 
 <style>
 	.hero {
@@ -136,6 +138,26 @@
 		}
 	}
 
+	.grid {
+		display: grid;
+
+		@media screen and (min-width: 1024px) {
+			grid-template-rows: repeat(auto-fit, minmax(280px, 1fr));
+			grid-template-columns: 1fr 1fr;
+			gap: 1px;
+			margin: 10vh 1vw;
+
+			p {
+				width: fit-content;
+			}
+		}
+	}
+
+	.win_95 {
+		@media screen and (min-width: 1024px) {
+			margin: 0 -2vw;
+		}
+	}
 	/* 
 	// Tablet
 	@media only screen and (min-width: 426px) {

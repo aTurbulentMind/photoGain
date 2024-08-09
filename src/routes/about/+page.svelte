@@ -1,6 +1,7 @@
 <script>
-	import Jax from '$lib/assets/img/enzz.jpg'
-	import Nextem from '$lib/assets/img/envv.jpg'
+	import Jax from '$lib/assets/img/eatho.jpg'
+	import Nextem from '$lib/assets/img/colabNlisten.jpg'
+	import OldVibe from '$lib/assets/img/gridbak.png'
 </script>
 
 <svelte:head>
@@ -8,8 +9,9 @@
 </svelte:head>
 
 <h4>Hello :)</h4>
+<!-- <div class="old_Vibe"><img src={OldVibe} alt="grid overlay" /></div> -->
 
-<img class="leader" src={Jax} alt="background" />
+<img class="leader" src={Nextem} alt="background" />
 <section class="head_Line">
 	<h1>About</h1>
 </section>
@@ -37,7 +39,7 @@
 </figure>
 
 <section>
-	<img class="backBack" src={Nextem} alt="background" />
+	<img class="backBack" src={Jax} alt="background" />
 	<p class=" cut_Box overLay glass_Back">
 		In a world that's constantly racing forward, they invite you to hit pause and step into his
 		vibrant, vaporwave wonderland. These photographs are not just images; they're
@@ -54,7 +56,8 @@
 	/* Phone size / base */
 	.leader {
 		object-fit: cover;
-		width: 100vw;
+		width: 70vw;
+		margin: 5vh 15vw;
 	}
 
 	p {
@@ -68,9 +71,18 @@
 
 	.backBack {
 		object-fit: cover;
-		height: 100vh;
-		width: 100vw;
+		width: 70vw;
+		margin: 5vh 15vw;
 	}
+
+	.old_Vibe {
+		object-fit: cover;
+		width: 100vw;
+		margin: 0;
+		position: fixed;
+		opacity: 0.5;
+	}
+
 	/* 
 	 Tablet size 
 	@media only screen and (min-width: 426px) {

@@ -3,6 +3,7 @@
 	import '$lib/style/baseCamp.svelte'
 	import Header from './Nav.svelte'
 	import Footer from './Footer.svelte'
+	import OldVibe from '$lib/assets/img/gridbak.png'
 
 	import { invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'
@@ -24,11 +25,27 @@
 </script>
 
 <svelte:head>
-	<title>User Management</title>
+	<title>Busy child Photography</title>
 </svelte:head>
+<div class="old_Vibe"><img src={OldVibe} alt="grid overlay" /></div>
 
 <Header />
 
 <slot />
 
 <Footer />
+
+<style>
+	.old_Vibe {
+		object-fit: cover;
+		width: 100vw;
+		margin: 0;
+		position: fixed;
+		opacity: 0.2;
+		pointer-events: none;
+
+		& img {
+			z-index: 1;
+		}
+	}
+</style>
