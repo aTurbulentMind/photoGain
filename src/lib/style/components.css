@@ -137,7 +137,36 @@
                 } 
         }
 	}
-/* 
+
+    /* Neon Text */ 
+
+	.neon-text {
+		color: var(--grabber); /* Neon blue color */
+		text-shadow:
+			0 0 5px var(--grabber),
+			0 0 10px var(--grabber),
+			0 0 20px var(--grabber),
+			0 0 40px var(--grabber),
+			0 0 80px var(--grabber);
+		transition: opacity 0.2s;
+	}
+
+	.blink {
+		animation: blink 0.1s 1;
+	}
+
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
+
+
+
 /* Form  */
 
 
