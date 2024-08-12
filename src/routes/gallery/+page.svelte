@@ -1,4 +1,33 @@
 <script lang="ts">
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
+
 	export let data
 	let { supabase, profile } = data
 	$: ({ supabase, profile } = data)
@@ -42,7 +71,10 @@
 </script>
 
 <div class="gallery-container">
-	<h1>Vaporwave Gallery</h1>
+	<div class=" head_Line">
+		<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Vaporwave Gallery</h1>
+	</div>
+
 	<p class="intro-paragraph">
 		Vaporwave is a unique genre that blends music, art, and internet culture into a nostalgic yet
 		futuristic aesthetic. Emerging in the early 2010s, this style draws heavily from 1980s and 1990s
@@ -50,6 +82,7 @@
 		smooth jazz or elevator music remixes.
 	</p>
 
+	<br />
 	{#if folders && folders.length > 0}
 		<div class="carousel-container">
 			{#each folders as folder}
@@ -109,6 +142,11 @@
 			width: 20vw;
 			cursor: pointer;
 		}
+	}
+
+	h1 {
+		padding: 0;
+		margin: 0;
 	}
 
 	.intro-paragraph {

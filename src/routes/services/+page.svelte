@@ -1,11 +1,40 @@
 <script>
 	import Nextem from '$lib/assets/img/enzz.jpg'
+
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
 </script>
 
 <h4>Hello :)</h4>
 
-<div class="head_Line">
-	<h1>Services</h1>
+<div class=" head_Line">
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Services</h1>
 </div>
 
 <main>

@@ -3,7 +3,7 @@
 	import '$lib/style/baseCamp.svelte'
 	import Header from './Nav.svelte'
 	import Footer from './Footer.svelte'
-	import OldVibe from '$lib/assets/img/gridbak.png'
+	import OldVibe from '$lib/assets/img/gridbak2.png'
 
 	import { invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'

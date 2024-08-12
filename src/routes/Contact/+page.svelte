@@ -4,6 +4,35 @@
 	import Support_Svg from '$lib/svg/crown_Svg.svelte'
 	import Supp_Svg from '$lib/svg/suppy_Svg.svelte'
 
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
+
 	function getCurrentDateTime() {
 		let currentDate = new Date()
 
@@ -22,8 +51,8 @@
 
 <h4>Hello :)</h4>
 
-<div class="head_Line">
-	<h1>Contact</h1>
+<div class=" head_Line">
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Contact</h1>
 </div>
 
 <div class="grid">

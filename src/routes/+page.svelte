@@ -1,9 +1,16 @@
 <script>
 	import { fade } from 'svelte/transition'
-	import { onMount } from 'svelte'
+	import { onMount, onDestroy } from 'svelte'
 	import Moodal from '$lib/assets/tools/model.svelte' // Adjust the path if necessary
 
 	let showModal = false
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
 
 	// Show the modal after 0.5 seconds
 	onMount(() => {
@@ -17,7 +24,24 @@
 			setTimeout(() => {
 				showModal = true
 			}, 700)
+
+		startRandomNumberGenerator()
 	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
 </script>
 
 <div class="hero">
@@ -26,9 +50,11 @@
 	</div>
 </div>
 
-<section id="home" in:fade={{ duration: 1000 }}>
-	<h1>Capturing moments in a vibrant, vaporwave aesthetic.</h1>
-</section>
+<div class="neon-text {shouldBlink ? 'blink' : ''}">
+	<section id="home">
+		<h1>Capturing moments in a vibrant, vaporwave aesthetic.</h1>
+	</section>
+</div>
 
 <container class="grid">
 	<p>
@@ -157,6 +183,7 @@
 			margin: 0 -2vw;
 		}
 	}
+
 	/* 
 	// Tablet
 	@media only screen and (min-width: 426px) {

@@ -1,5 +1,34 @@
 <!-- +page.svelte -->
 <script>
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
+
 	export let data
 	export let recentArticles = data.recentArticles || []
 
@@ -29,9 +58,9 @@
 	<title>Blog</title>
 </svelte:head>
 
-<section class="head_Line">
-	<h1>Blog</h1>
-</section>
+<div class=" head_Line">
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Blog</h1>
+</div>
 
 <article>
 	<p class="cut_Box">
@@ -108,29 +137,6 @@
 	a {
 		margin: 5vh 35vw;
 		font-size: var(--f_lg);
-	}
-
-	h1 {
-		color: var(--grabber); /* Neon green color */
-		text-shadow:
-			0 0 5px var(--grabber),
-			0 0 10px var(--grabber),
-			0 0 20px var(--grabber),
-			0 0 40px var(--grabber),
-			0 0 80px var(--grabber);
-
-		@media (min-width: 767px) {
-			margin: 0 15vw;
-		}
-
-		@media (min-width: 1024px) {
-			margin: 0 15vw;
-		}
-
-		@media (min-width: 1440px) {
-			font-size: var(--f_xxxl);
-			margin: 5vh 10vw;
-		}
 	}
 
 	.win_95 {

@@ -1,7 +1,35 @@
 <script>
 	import Jax from '$lib/assets/img/eatho.jpg'
 	import Nextem from '$lib/assets/img/colabNlisten.jpg'
-	import OldVibe from '$lib/assets/img/gridbak.png'
+
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
 </script>
 
 <svelte:head>
@@ -9,12 +37,12 @@
 </svelte:head>
 
 <h4>Hello :)</h4>
-<!-- <div class="old_Vibe"><img src={OldVibe} alt="grid overlay" /></div> -->
 
 <img class="leader" src={Nextem} alt="background" />
-<section class="head_Line">
-	<h1>About</h1>
-</section>
+
+<div class=" head_Line">
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">About</h1>
+</div>
 
 <figure class="img_Intro">
 	<article>
@@ -58,6 +86,8 @@
 		object-fit: cover;
 		width: 70vw;
 		margin: 5vh 15vw;
+
+		z-index: 995;
 	}
 
 	p {
