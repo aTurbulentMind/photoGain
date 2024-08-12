@@ -38,11 +38,12 @@
     font-family: var(--font_Alt);
 
     @media (min-width: 767px) {
+      font-size: var(--f_xxl);
       margin: 0 15vw;
     } 
     
     @media (min-width: 1024px) {
-            font-size: var(--f_xxl);
+      font-size: var(--f_xxl);
       margin: var(--bok_Lrg);
     } 
     
