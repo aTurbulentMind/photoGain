@@ -26,7 +26,7 @@
 <div class="blog-container">
 	{#if recentArticles.length > 0}
 		{#each recentArticles as article}
-			<h2 class="blog-title">{article.text_name}</h2>
+			<h2 class="blog-title neon-text">{article.text_name}</h2>
 			<p class="highlight"><strong>Date:</strong> {formatDate(recentArticles[0].date_made)}</p>
 			<div class="blog-content">
 				<p>{@html formatTextGuts(article.text_guts)}</p>
