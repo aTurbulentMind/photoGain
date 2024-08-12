@@ -49,7 +49,8 @@
 		<Moodal {showModal} />
 	</div>
 </div>
-
+<br /><br />
+<br /><br />
 <div class="neon-text {shouldBlink ? 'blink' : ''}">
 	<section id="home">
 		<h1>Capturing moments in a vibrant, vaporwave aesthetic.</h1>
