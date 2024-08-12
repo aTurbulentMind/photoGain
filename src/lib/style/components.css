@@ -125,6 +125,12 @@
 		& h1 {
 			font-size: var(--f_xl);
             text-transform: capitalize;
+
+                        @media (min-width: 766px) {
+                font-size: var(--f_xxl);
+                padding: 1rem;
+                margin-left: 0;
+            } 
             
             @media (min-width: 1024px) {
                 font-size: var(--f_xxxl);
