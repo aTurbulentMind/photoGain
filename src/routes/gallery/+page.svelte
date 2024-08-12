@@ -136,6 +136,8 @@
 			text-transform: uppercase;
 			padding: 20px;
 			margin: 0;
+
+			font-size: var(--f_m);
 		}
 
 		& img {
@@ -205,7 +207,19 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		text-align: center;
 		cursor: pointer;
+
+		& h2 {
+			padding: 7vh 5vw 0 5vw;
+			color: var(--extra);
+			text-shadow:
+				0 0 5px var(--back_Tre),
+				0 0 10px var(--back_Tre),
+				0 0 20px var(--back_Tre),
+				0 0 40px var(--back_Tre),
+				0 0 80px var(--back_Tre);
+		}
 	}
 
 	.gallery-item img {
