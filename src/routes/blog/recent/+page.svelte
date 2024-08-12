@@ -12,10 +12,39 @@
 		// Replace newlines with <br> tags for line breaks
 		return text.replace(/\n/g, '<br />')
 	}
+
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
 </script>
 
-<div class="head_Line">
-	<h1>Most Recent Fire</h1>
+<div class=" head_Line">
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Most Recent Fire</h1>
 </div>
 
 <div class="blog-container">

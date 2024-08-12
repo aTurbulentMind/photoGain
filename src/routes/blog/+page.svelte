@@ -80,7 +80,7 @@
 		refreshing perspective that celebrates the beauty of ambiguity and timelessness.
 	</p>
 
-	<h2>Most Recent Articles</h2>
+	<h2 class="neon-text">Most Recent Articles</h2>
 	<section>
 		{#if recentArticles && recentArticles.length > 0}
 			<ul>

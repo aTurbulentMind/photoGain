@@ -1,5 +1,34 @@
 <!-- +page.svelte -->
 <script>
+	import { onMount, onDestroy } from 'svelte'
+
+	function generateRandomNumber() {
+		return Math.floor(Math.random() * 300) + 1
+	}
+
+	let randomNumber
+	let shouldBlink = false
+
+	// Show the modal after 0.5 seconds
+	onMount(() => {
+		startRandomNumberGenerator()
+	})
+
+	function startRandomNumberGenerator() {
+		randomNumber = generateRandomNumber()
+		shouldBlink = randomNumber <= 150
+		console.log('Generated Number:', randomNumber)
+		const interval = setInterval(() => {
+			randomNumber = generateRandomNumber()
+			shouldBlink = randomNumber <= 150
+			console.log('Generated Number:', randomNumber)
+		}, 3000)
+
+		onDestroy(() => {
+			clearInterval(interval)
+		})
+	}
+
 	export let data
 	export let recentArticles = data.recentArticles || []
 
@@ -19,8 +48,8 @@
 	}
 </script>
 
-<div class="head_Line">
-	<h1>Library of The Sunken City</h1>
+<div class=" head_Line">
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Library of The Sunken City</h1>
 </div>
 
 <div class="blog-container">
