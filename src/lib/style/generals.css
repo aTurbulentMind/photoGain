@@ -1,18 +1,16 @@
 	  * {
     padding: 0;
     margin: 0;
-    font-family: var(--font_Main);
     scroll-behavior: smooth;
     box-sizing: border-box;
     }
     
     body {
-		color: var(--text_Main);
-		background: var(--gradient);
-		font-family: var(--font_Main);
-    letter-spacing: var(--pad_sm);
-		line-height: 1.6;
-    text-shadow: var(--text_Light);
+	color: var(--text_Main);
+	background: var(--gradient);
+	font-family: var(--font_Main);
+    letter-spacing: var(--pad_Sm);
+	line-height: 1.6;
     overflow-x: hidden;
     }
 
@@ -21,49 +19,73 @@
     color: var(--grabber);
     font-weight: Bold;
     cursor: pointer;
+    transition: var(--transition);
 
-      &:hover {
-          transition: var(--transition);
-          color: var(--grabber);
-          transform: scale(1.1);
-          text-decoration: underline;
-      }
+    &:hover {
+        color: var(--grabber);
+        transform: scale(1.1);
+        text-decoration: underline;
+        cursor: pointer;
+    }
     }
 
-    h1, h2, h3 {
-    width: fit-content;
-		padding: var(--pad_xl);
-    margin: var(--half_Bok);
-		font-size: var(--f_lg);
-    font-family: var(--font_Alt);
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .marg_Also {
+        margin: var(--qtr_Marg);
+    }
 
-    @media (min-width: 767px) {
-      font-size: var(--f_xxl);
-      margin: 0 15vw;
-    } 
-    
-    @media (min-width: 1024px) {
-      font-size: var(--f_xxl);
-      margin: var(--bok_Lrg);
-    } 
-    
-    @media (min-width: 1440px) {
-      font-size: var(--f_xxxl);
-    } 
-	}
+    h1 {
+        font-size: var(--f_Xl);
+    }
 
-    p{
-    margin: var(--half_Bok);
-		padding: var(--pad_sm);
-    text-align: left;
-    font-size: var(--font_Hexa);
+    h2 {
+        font-size: var(--f_Lg);
+    }
 
-            @media (min-width: 766px) {
-                    margin: var(--bok_Lrg);
-        }
+    h3 {
+        font-size: var(--f_M);
+    }
+
+    p {
+        font-size: var(--font);
+    }
+
+    .altFont {
+        font-family: var(--font_Alt);
+    }
+
+    ul {
+        list-style-type: none;
     }
 
     span{
         color: var(--highlight);
     }
 
+    /* Tablet Screen  */
+@media screen and  (min-width: 768px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .marg_Also{
+        margin: var(--half_Marg);
+    }
+
+}
+
+    /* Desktop Screen */
+@media screen and (min-width: 1024px) {
+    h1,
+    h2,
+    h3,
+    p,
+    .marg_Also {
+        margin: var(--lrg_Marg);
+    }
+} 

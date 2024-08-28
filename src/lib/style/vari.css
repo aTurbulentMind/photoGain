@@ -1,83 +1,65 @@
 :root{
-    
-    /* Gap */
-    --gap_sm:10px;
-    --gap:20px;
-    --gap_lg:30px;
+/* spacing */
+--pad_Sm: 0.25rem ;
+--pad: 0.75rem ;
+--pad_Xl: 1.5rem ;
+--pad_Xxl: 2rem ;
+
+--marg: 0.75rem;
+--marg_Xl: 1.5rem;
+--marg_Xxl: 2rem;
+--marg_Xxxl: 3rem;
+
+/* page spacing */
+--qtr_Marg:5% 8%;
+--qtr_Tp_Marg:5% 0;
+--qtr_Sd_Marg:0 8%;
+--half_Marg:15% 8%;
+--lrg_Marg: 10% 20%;
+
+/* borders */
+--thick: 1px;
+--rad: 10px;
+--bord: 5px groove var(--highlight);
+
+ /* shadows & lights */
+--main_Shadow: 8px 8px 8px 10px var(--back_Hallow);
+
+--text_Shadow:2px 2px 2px var(--error);
+--text_Shadow_Alt:2px 2px 8px var(--grabber);
+
+--text_Light:2px 2px 2px var(--extra);
+
+--box_Shadow: 1px 3px 5px hsl(40, 20%, 3%);
+--box_Light: 1px 3px 5px var(--extra);
+--box_Light_Alt: 0 0 20px 5px var(--extra);
 
 
-    /* Padding */
-    --pad_sm: 0.25rem;
-    --pad: 0.75rem;
-    --pad_xl: 1.5rem;
-    --pad_xxl: 2rem;
+/* opacity */
+--op_T:0.25;
+--op_M:0.5;
+--op_L:0.75;
 
-        /* Margin */
-    --marg_sm: 0.5rem ;
-    --marg: 0.75rem ;
-    --marg_xl: 1.5rem ;
-    --marg_xxl: 2rem ;
-    --marg_xxxl: 3rem ;
+/* font sizes */
+--f_Xs:0.25rem;
+--f_Sm: 0.75rem;
+--font: 1rem;
+--f_M: 1.25rem;
+--f_Lg: 1.5rem;
+--f_Xl: 2rem;
+--f_Xxl: 3rem;
+--f_Xxxl: 5rem;
 
-    /* block spacing */
-    --qtr_marg: 8%;
-    --qtr_Bok: 8%;
-    --bok_Qtr: 8%;
+/* font stack */
+--font_Main: "DotGothic16", sans-serif;
+--font_Alt: "Poiret One", sans-serif;
+--font_Tre:"Special Elite", system-ui;
+--font_Quad: "Bungee Shade", sans-serif;
+--font_Quint: "Audiowide", sans-serif;
+--font_Hexa: "Monotron", sans-serif;
 
-    --bok_Sd: 0 15%;
-    --bok_Tp: 10% 0;
-
-    --half_marg:15% 8%;
-    --half_Bok:15% 8%;
-
-    --lrg_marg: 10% 20%;
-    --bok_Lrg: 10% 20%;
-
-    --full_blk: 5vw 5vh;
-    --full_Bok: 5vw 5vh;
-
-
-
-     /* borders */
-    --thick: 1px ;
-    --rad: 10px ;
-    --bord: 4px solid var(--highlight);
-
-     /* shadow */
-    --box_Shadow: 2px 2px 7px  hsla(233, 80%, 4%, 0.678);
-    --box_Light: 6px 6px 22px  hsl(209, 86%, 66%);
-    
-    --text_Shadow:4px 4px 6px hsl(56, 80%, 4%);
-    --text_Light:2px 2px 2px hsl(209, 86%, 66%);
-
-    /* opacity */
-    --op_t:0.25;
-    --op_m:0.5;
-    --op_s:0.75;
-
-
-
-     /* font sizes */
-    --f_xsm:0.25rem;
-    --f_sm: 0.75rem;
-    --font: 1rem;
-    --f_m:1.25rem;
-    --f_lg: 1.5rem;
-    --f_xl: 2rem;
-    --f_xxl: 3rem;
-    --f_xxxl: 5rem;
-
-    /* font stack */
-    --font_Main: "DotGothic16", sans-serif;
-    --font_Alt: "Poiret One", sans-serif;
-    --font_Tre:"Special Elite", system-ui;
-    --font_Quad: "Bungee Shade", sans-serif;
-    --font_Quint: "Audiowide", sans-serif;
-    --font_Hexa: "Monotron", sans-serif;
-
-
-    /* transit*/
-    --tSpeed: 0.3s;
-    --transition:all 0.3s ease-in-out;
+/* transit*/
+--tSpeed: 0.3s;
+--transition:all 0.3s ease-in-out 0.1s;
 }
 
