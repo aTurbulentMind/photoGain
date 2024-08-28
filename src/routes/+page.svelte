@@ -1,7 +1,8 @@
 <script>
-	import { fade } from 'svelte/transition'
 	import { onMount, onDestroy } from 'svelte'
 	import Moodal from '$lib/assets/tools/model.svelte' // Adjust the path if necessary
+	import { blur, fly } from 'svelte/transition'
+	import { cubicInOut } from 'svelte/easing'
 
 	let showModal = false
 
@@ -31,11 +32,9 @@
 	function startRandomNumberGenerator() {
 		randomNumber = generateRandomNumber()
 		shouldBlink = randomNumber <= 150
-		console.log('Generated Number:', randomNumber)
 		const interval = setInterval(() => {
 			randomNumber = generateRandomNumber()
 			shouldBlink = randomNumber <= 150
-			console.log('Generated Number:', randomNumber)
 		}, 3000)
 
 		onDestroy(() => {
@@ -44,20 +43,25 @@
 	}
 </script>
 
-<div class="hero">
-	<div class="modal">
+<hero>
+	<modal>
 		<Moodal {showModal} />
-	</div>
-</div>
-<br /><br />
-<br /><br />
-<div class="neon-text {shouldBlink ? 'blink' : ''}">
-	<section id="home">
-		<h1>Capturing moments in a vibrant, vaporwave aesthetic.</h1>
-	</section>
+	</modal>
+</hero>
+
+<div
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: -50, opacity: 0.5 }}
+	class="head_Line"
+>
+	<h1 class="neon-text {shouldBlink ? 'blink' : ''}">Vibrant Vaporwave Distilled</h1>
 </div>
 
-<container class="grid">
+<container
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 600, easing: cubicInOut, x: 100, y: 0, opacity: 0.5 }}
+	class="grid"
+>
 	<p>
 		The Essence of Street Photography: also known as candid photography, thrives on unmediated
 		chance encounters and random incidents within public places. The photographer aims to capture
@@ -128,27 +132,11 @@
 			<button class="win_95_butt">No</button>
 		</div>
 	</div>
-
-	<!-- <div>
-	<h2>Sign up for stuff today!</h2>
-	</div>
-	<div class="win_95">
-		<div class="title-bar">
-			<div class="title-bar-text">Signup!</div>
-			<div class="title-bar-controls">
-				<button aria-label="Close">X</button>
-			</div>
-			</div>
-			<div class="window-content">
-				<p>Sign your life away now!</p>
-				<a href="/signUp/"><button class="win_95_butt">Yes</button></a>
-				<a href="/signUp/"><button class="win_95_butt">No</button></a>
-				</div> 
-				</div>-->
 </container>
 
+<!--svelte-ignore css-unused-selector -->
 <style>
-	.hero {
+	hero {
 		display: flex;
 		position: relative;
 		background-image: url('$lib/assets/img/enerrr.jpg');
@@ -160,272 +148,32 @@
 		height: 100vh;
 		width: 100vw;
 
-		& .modal {
-			margin-top: 25vh;
+		& modal {
+			margin: 25vh auto;
+		}
+	}
+
+	.head_Line {
+		@media screen and (min-width: 768px) {
+			margin: 5vh auto;
 		}
 	}
 
 	.grid {
-		display: grid;
-
 		@media screen and (min-width: 1024px) {
-			grid-template-columns: 1fr 1fr;
-			gap: 1px;
 			margin: 10vh 0;
+			width: 100vw;
+		}
 
-			p {
-				width: fit-content;
-			}
+		@media screen and (min-width: 1440px) {
+			margin: 10vh 10vw;
 		}
 	}
 
 	.win_95 {
+		margin: 1vh auto;
 		@media screen and (min-width: 1024px) {
 			margin: 0 -2vw;
 		}
 	}
-
-	/* 
-	// Tablet
-	@media only screen and (min-width: 426px) {
-		.hero {
-			height: 110vh;
-			h1 {
-				position: absolute;
-				left: 1vw;
-				font-size: var(--f_xl);
-			}
-
-			p {
-				top: 25vh;
-				left: 2vw;
-				margin: 0 3vw;
-				font-size: var(--f_m);
-			}
-
-			form {
-				left: 5vw;
-			}
-
-			a {
-				left: 25vw;
-				font-size: var(--f_lg);
-			}
-		}
-
-		.grid {
-			margin: 10vh 2.5vw;
-			grid-template-columns: 1fr 1fr;
-			gap: 35px;
-
-			.card {
-				svg {
-					width: 10vw;
-					margin: 5% 35%;
-				}
-			}
-		}
-
-		.alt_Color {
-			margin: 0;
-			height: 115vh;
-			padding: 10vh 0;
-		}
-	}
-
-	// Laptop
-	@media only screen and (min-width: 769px) {
-		.hero {
-			display: flex;
-			height: 100vh;
-
-			p {
-				position: absolute;
-				left: 27.5vw;
-				top: 20vh;
-				width: 40vw;
-				font-size: var(--f_lg);
-			}
-
-			form {
-				top: 50vh;
-				margin-left: 10vw;
-				width: 70vw;
-				height: 50vh;
-
-				h2 {
-					font-size: var(--f_xl);
-					margin: 0;
-					margin-top: -10vh;
-				}
-
-				p {
-					top: 0;
-					margin-top: 3vh;
-				}
-
-				input {
-					right: -15vw;
-					width: 25vw;
-					height: 4vh;
-					margin-top: 0.5vh;
-					font-size: var(--f_lg);
-				}
-
-				.text_Message {
-					margin-top: -6vh;
-				}
-
-				button {
-					width: 10vw;
-					bottom: 3vh;
-					left: 30vw;
-					font-size: var(--f_lg);
-				}
-			}
-		}
-
-		.grid {
-			margin: 15vh 10vw;
-
-			.card {
-				svg {
-					width: 10vw;
-					margin: 3vh 35%;
-				}
-			}
-		}
-
-		.text_Block {
-			height: 60vh;
-			margin-bottom: 0;
-
-			.overLay {
-				display: relative;
-				position: absolute;
-				width: 80vw;
-				right: 10vw;
-				margin-top: -160vh;
-
-				p {
-					margin-top: 3vh;
-				}
-
-				a {
-					font-size: var(--f_xl);
-				}
-			}
-
-			.img_Half {
-				margin: 5vh 0;
-				img {
-					width: 100vw;
-					margin-bottom: 5vh;
-				}
-			}
-		}
-
-		.alt_Color {
-			color: var(--text_Main);
-			background: var(--back_Main);
-			margin-top: 120vh;
-			margin-left: 10vw;
-		}
-	}
-
-	//LgScrn
-	@media only screen and (min-width: 1440px) {
-		.hero {
-			h1 {
-				img {
-					left: 0;
-					padding: 0;
-					margin: 0;
-				}
-			}
-
-			p {
-				top: 45vh;
-				left: 4vw;
-				width: 40vw;
-				font-size: var(--f_xl);
-			}
-			form {
-				top: 45vh;
-				left: 40vw;
-				width: 40vw;
-				h2 {
-					padding: 20% 20% 5% 5%;
-					font-size: var(--f_lg);
-				}
-
-				p,
-				input,
-				button {
-					font-size: var(--f_m);
-				}
-
-				input,
-				button {
-					left: 20vw;
-					width: 15vw;
-				}
-			}
-		}
-
-		.grid {
-			margin: 10vh 10vw;
-			grid-template-columns: 1fr 1fr 1fr;
-
-			.card {
-				svg {
-					width: 5vw;
-					margin: 1vh 35%;
-				}
-
-				.body {
-					font-size: var(--f_m);
-				}
-			}
-		}
-
-		.text_Block {
-			margin: 1.5vh 0vw;
-
-			.img_Half {
-				margin: 5vh 0;
-				img {
-					width: 40vw;
-					margin-bottom: 5vh;
-				}
-			}
-			.overLay {
-				right: 1vw;
-				margin: -100vh 5vw 0 0;
-				width: 50vw;
-
-				p {
-					font-size: var(--f_lg);
-				}
-
-				a {
-					font-size: var(--f_lg);
-					margin-left: -30vw;
-				}
-			}
-		}
-
-		.alt_Color {
-			color: var(--back_Main);
-			background: var(--back_Alt);
-			height: fit-content;
-			margin-top: 60vh;
-			margin-left: 0;
-			margin-bottom: 0;
-
-			.text_Box {
-				margin: 10% 10% 0 10%;
-			}
-		}
-	} */
 </style>

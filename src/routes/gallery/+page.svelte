@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte'
+	import { slide, blur, fly } from 'svelte/transition'
+	import { cubicInOut } from 'svelte/easing'
 
 	function generateRandomNumber() {
 		return Math.floor(Math.random() * 300) + 1
@@ -16,11 +18,9 @@
 	function startRandomNumberGenerator() {
 		randomNumber = generateRandomNumber()
 		shouldBlink = randomNumber <= 150
-		console.log('Generated Number:', randomNumber)
 		const interval = setInterval(() => {
 			randomNumber = generateRandomNumber()
 			shouldBlink = randomNumber <= 150
-			console.log('Generated Number:', randomNumber)
 		}, 3000)
 
 		onDestroy(() => {
@@ -70,11 +70,23 @@
 	}
 </script>
 
-<div class="gallery-container">
-	<div class=" head_Line">
-		<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Vaporwave Gallery</h1>
-	</div>
+<svelte:head>
+	<title>Gallery</title>
+</svelte:head>
 
+<div
+	class=" head_Line"
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: -50, opacity: 0.5 }}
+>
+	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Vaporwave Gallery</h1>
+</div>
+
+<div
+	class="gallery-container"
+	in:slide={{ delay: 200, duration: 300, easing: cubicInOut, axis: 'x' }}
+	out:blur={{ delay: 100, duration: 300, easing: cubicInOut }}
+>
 	<p class="intro-paragraph">
 		Vaporwave is a unique genre that blends music, art, and internet culture into a nostalgic yet
 		futuristic aesthetic. Emerging in the early 2010s, this style draws heavily from 1980s and 1990s
@@ -105,7 +117,6 @@
 	{#if showModal}
 		<div class="modal-background">
 			<div class="modal">
-				<button on:click={() => (showModal = false)}>Close</button>
 				<h2>{selectedGallery}</h2>
 				{#if selectedGalleryImages.length > 0}
 					<div class="carousel-container">
@@ -113,6 +124,7 @@
 							<img src={imageUrl} alt={selectedGallery} />
 						{/each}
 					</div>
+					<button on:click={() => (showModal = false)}>Close</button>
 				{:else}
 					<p aria-live="polite">Loading gallery images...</p>
 				{/if}
@@ -124,20 +136,18 @@
 <!-- svelte-ignore css-unused-selector -->
 <style>
 	.gallery-container {
-		width: 100vw;
-		margin: 0 auto;
+		width: 90vw;
+		margin: 10vh auto;
 		color: var(--highlight);
 		background-color: var(--back_Hallow_Dark);
 		border: 2px solid var(--highlight_Alt);
-		border-radius: 10px;
 		box-shadow: var(--box_Shadow);
 
 		& h2 {
 			text-transform: uppercase;
 			padding: 20px;
 			margin: 0;
-
-			font-size: var(--f_m);
+			font-size: var(--f_M);
 		}
 
 		& img {
@@ -146,28 +156,10 @@
 		}
 	}
 
-	h1 {
-		padding: 0;
-		margin: 0;
-	}
-
 	.intro-paragraph {
 		margin-bottom: 40px;
-		font-size: var(--f_m);
+		font-size: var(--f_M);
 		color: var(--highlight_Alt);
-	}
-
-	h2 {
-		color: var(--highlight); /* Neon blue color */
-		text-shadow:
-			0 0 5px var(--highlight),
-			0 0 10px var(--highlight),
-			0 0 20px var(--highlight),
-			0 0 40px var(--highlight),
-			0 0 80px var(--highlight);
-		margin-top: 20px;
-		padding: 20px;
-		font-weight: bold;
 	}
 
 	.carousel-container {
@@ -190,16 +182,14 @@
 	}
 
 	button {
-		all: unset;
 		background: var(--grabber);
 		text-align: center;
 		padding: var(--pad);
 		margin: var(--marg);
-		border-radius: var(--rad);
-		cursor: pointer;
 
 		&:hover {
 			background: var(--back_Hallow);
+			cursor: pointer;
 		}
 	}
 
@@ -224,8 +214,6 @@
 
 	.gallery-item img {
 		max-width: 200px;
-		border: 2px solid #ff77a9;
-		border-radius: 8px;
 		object-fit: cover;
 	}
 
@@ -243,12 +231,11 @@
 
 	.modal {
 		width: 80vw;
-		background-color: #222;
+		background-color: var(--back_Hallow_Dark);
 		padding: 20px;
-		border: 2px solid #ff77a9;
-		border-radius: 10px;
+		border: var(--bord);
 		max-width: 80%;
-		max-height: 90%;
+		max-height: fit-content;
 		overflow-y: auto;
 	}
 
@@ -263,16 +250,25 @@
 	}
 
 	.modal button {
-		background-color: #ff77a9;
-		color: #222;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
+		background: var(--win95-background);
+		border: var(--win95-border-width) solid var(--win95-text);
+		border-top-color: var(--win95-border-light);
+		border-left-color: var(--win95-border-light);
+		padding: var(--pad_Sm);
+		margin: var(--qtr_Marg);
+		position: center;
+		color: var(--win95-text);
+		font-size: var(--f_M);
 		cursor: pointer;
-		font-size: 1rem;
+
+		&:hover {
+			border-color: var(--win95-border-medium);
+		}
 	}
 
-	.modal button:hover {
-		background-color: #ff99b4;
+	h4 {
+		@media screen and (min-width: 768px) {
+			display: none;
+		}
 	}
 </style>

@@ -2,6 +2,9 @@
 <script>
 	import { onMount, onDestroy } from 'svelte'
 
+	import { blur, fly, slide } from 'svelte/transition'
+	import { cubicInOut } from 'svelte/easing'
+
 	function generateRandomNumber() {
 		return Math.floor(Math.random() * 300) + 1
 	}
@@ -17,11 +20,9 @@
 	function startRandomNumberGenerator() {
 		randomNumber = generateRandomNumber()
 		shouldBlink = randomNumber <= 150
-		console.log('Generated Number:', randomNumber)
 		const interval = setInterval(() => {
 			randomNumber = generateRandomNumber()
 			shouldBlink = randomNumber <= 150
-			console.log('Generated Number:', randomNumber)
 		}, 3000)
 
 		onDestroy(() => {
@@ -58,119 +59,111 @@
 	<title>Blog</title>
 </svelte:head>
 
-<div class=" head_Line">
+<div
+	class=" head_Line"
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: -50, opacity: 0.5 }}
+>
 	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Blog</h1>
 </div>
+<div
+	class="blog-container"
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: 0, opacity: 0.5 }}
+>
+	<article>
+		<p>
+			The Vaporwave Photographer's Blog is a mesmerizing journey into the world of retro aesthetics,
+			blending vibrant neon hues, nostalgic elements, and modern digital art. This unique blog
+			captures the essence of the vaporwave genre, transporting readers to an era where past and
+			future intertwine seamlessly. Through carefully curated photo shoots and insightful
+			commentary, the blog showcases the timeless beauty of forgotten places, the allure of vintage
+			technology, and the surreal charm of urban landscapes bathed in synthetic light.
+			<br /><br />
+			Each post on the Vaporwave Photographer's Blog is a visual and auditory experience, often accompanied
+			by curated playlists that enhance the immersive journey. The blog not only highlights stunning
+			visuals but also delves into the philosophy and cultural significance behind the vaporwave movement.
+			It serves as a sanctuary for art enthusiasts, retro aficionados, and anyone seeking to escape the
+			mundane and dive into a world where art, music, and technology converge in a nostalgic symphony.
+			Whether you're a seasoned vaporwave enthusiast or a curious newcomer, the Vaporwave Photographer's
+			Blog offers a refreshing perspective that celebrates the beauty of ambiguity and timelessness.
+		</p>
 
-<article>
-	<p class="cut_Box">
-		The Vaporwave Photographer's Blog is a mesmerizing journey into the world of retro aesthetics,
-		blending vibrant neon hues, nostalgic elements, and modern digital art. This unique blog
-		captures the essence of the vaporwave genre, transporting readers to an era where past and
-		future intertwine seamlessly. Through carefully curated photo shoots and insightful commentary,
-		the blog showcases the timeless beauty of forgotten places, the allure of vintage technology,
-		and the surreal charm of urban landscapes bathed in synthetic light.
-		<br /><br />
-		Each post on the Vaporwave Photographer's Blog is a visual and auditory experience, often accompanied
-		by curated playlists that enhance the immersive journey. The blog not only highlights stunning visuals
-		but also delves into the philosophy and cultural significance behind the vaporwave movement. It serves
-		as a sanctuary for art enthusiasts, retro aficionados, and anyone seeking to escape the mundane and
-		dive into a world where art, music, and technology converge in a nostalgic symphony. Whether you're
-		a seasoned vaporwave enthusiast or a curious newcomer, the Vaporwave Photographer's Blog offers a
-		refreshing perspective that celebrates the beauty of ambiguity and timelessness.
-	</p>
+		<h2 class="neon-text">Most Recent Articles</h2>
+		<section>
+			{#if recentArticles && recentArticles.length > 0}
+				<ul>
+					{#each recentArticles as article, index}
+						<li>
+							<button
+								class="win_95_butt"
+								type="button"
+								on:click={() => showArticleDetails(article, index)}
+								aria-label="View details for {article.text_name}"
+							>
+								{article.text_name}
+							</button>
 
-	<h2 class="neon-text">Most Recent Articles</h2>
-	<section>
-		{#if recentArticles && recentArticles.length > 0}
-			<ul>
-				{#each recentArticles as article, index}
-					<li>
-						<button
-							class="win_95_butt"
-							type="button"
-							on:click={() => showArticleDetails(article, index)}
-							aria-label="View details for {article.text_name}"
-						>
-							{article.text_name}
-						</button>
+							{#if showModal && selectedIndex === index}
+								<article class="win_95">
+									<header class="title-bar">
+										<h3 style="margin: 0;" class="title-bar-text">{selectedArticle.text_name}</h3>
+										<nav class="title-bar-controls">
+											<button aria-label="Close" on:click={() => (showModal = false)}>X</button>
+										</nav>
+									</header>
+									<section class="window-content">
+										<p class="highlight">
+											<strong>Date:</strong>
+											{formatDate(recentArticles[0].date_made)}
+										</p>
+										<p><strong>Author:</strong> {selectedArticle.author}</p>
+										<p>{@html formatTextGuts(selectedArticle.text_guts)}</p>
+									</section>
+								</article>
+							{/if}
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p aria-live="polite">Loading recent articles...</p>
+			{/if}
+		</section>
 
-						{#if showModal && selectedIndex === index}
-							<article class="win_95">
-								<header class="title-bar">
-									<h3 style="margin: 0;" class="title-bar-text">{selectedArticle.text_name}</h3>
-									<nav class="title-bar-controls">
-										<button aria-label="Close" on:click={() => (showModal = false)}>X</button>
-									</nav>
-								</header>
-								<section class="window-content">
-									<p class="highlight">
-										<strong>Date:</strong>
-										{formatDate(recentArticles[0].date_made)}
-									</p>
-									<p><strong>Author:</strong> {selectedArticle.author}</p>
-									<p>{@html formatTextGuts(selectedArticle.text_guts)}</p>
-								</section>
-							</article>
-						{/if}
-					</li>
-				{/each}
-			</ul>
-		{:else}
-			<p aria-live="polite">Loading recent articles...</p>
-		{/if}
-	</section>
+		<br /> <br />
+		<p>Check out the last thing I wrote:</p>
+		<br />
+		<a class="bord_Caps marg_Also" href="/blog/recent/">Newest words</a>
+	</article>
 
 	<br /> <br />
-	<p class=" cut_Box">Check out the last thing I wrote:</p>
+	<p>Or look into a library of the past:</p>
 	<br />
-	<a class="bord_Caps" href="/blog/recent/">Newest words</a>
-</article>
-
-<br /> <br />
-<p class="cut_Box">Or look into a library of the past:</p>
-<br />
-<a class="bord_Caps" href="/blog/library/">Older words</a>
+	<a class="bord_Caps marg_Also" href="/blog/library/">Older words</a>
+</div>
 
 <!-- svelte-ignore css-unused-selector -->
 <style>
-	a {
-		margin: 5vh 35vw;
-		font-size: var(--f_lg);
-	}
-
-	.win_95 {
-		@media (min-width: 1024px) {
-			width: 60vw;
-			margin: var(--bok_Lrg);
-
-			& .title-bar {
-				margin: -1.5%;
-			}
-		}
-
-		@media (min-width: 1440px) {
-			width: 60vw;
-			margin: var(--bok_Lrg);
-
-			& .title-bar {
-				margin: -1%;
-			}
-		}
-	}
-
 	.win_95_butt {
-		margin: var(--bok_Qtr);
-		font-size: var(--f_m);
+		margin: var(--qtr_Marg);
+		font-size: var(--f_M);
 		padding: var(--pad);
 
 		@media (min-width: 766px) {
-			margin: var(--bok_Lrg);
+			margin: var(--qtr_Marg);
+		}
+
+		@media (min-width: 1024px) {
+			margin: var(--lrg_Marg);
 		}
 	}
 
 	.bord_Caps {
-		margin: 5vh 0 5vh 15vw;
+		font-size: var(--f_M);
+
+		@media (min-width: 1024px) {
+			font-size: var(--f_Lg);
+		}
 	}
 
 	.window-content {
@@ -179,6 +172,38 @@
 
 	ul li {
 		list-style-type: none;
-		margin: 2vh 0;
+		margin: 5vh 5vw;
+	}
+
+	@media screen and (min-width: 768px) {
+		.blog-container {
+			width: 90vw;
+			margin: 10vh auto;
+		}
+
+		.win_95 {
+			width: 80vw;
+			margin: 0 2vw;
+
+			& .title-bar {
+				margin: -1%;
+			}
+		}
+	}
+
+	@media screen and (min-width: 1440px) {
+		.blog-container {
+			width: 90vw;
+			margin: 10vh auto;
+		}
+
+		.win_95 {
+			width: 70vw;
+			margin: 0 5vw;
+
+			& .title-bar {
+				margin: 0;
+			}
+		}
 	}
 </style>

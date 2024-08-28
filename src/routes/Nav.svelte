@@ -1,4 +1,10 @@
 <script>
+	import { goto } from '$app/navigation'
+
+	function navigateTo(url) {
+		goto(url, { noScroll: true })
+	}
+
 	import Camera_Svg from '../lib/svg/crown_Svg.svelte'
 
 	let isMenuOpen = false
@@ -15,8 +21,13 @@
 		<ul>
 			<li>
 				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-					<a class:current={current === 0} on:click={() => (current = 0)} href="/gallery/"
-						>Gallery</a
+					<a
+						class:current={current === 0}
+						on:click={() => {
+							current = 0
+							navigateTo('/gallery')
+						}}
+						href="/gallery/">Gallery</a
 					>
 				</button>
 			</li>
@@ -29,36 +40,76 @@
 			</li> -->
 			<li>
 				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-					<a class:current={current === 2} on:click={() => (current = 2)} href="/Contact/"
-						>Contact</a
+					<a
+						class:current={current === 2}
+						on:click={() => {
+							current = 2
+							navigateTo('/Contact')
+						}}
+						href="/Contact/">Contact</a
 					>
 				</button>
 			</li>
 			<li>
 				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-					<a class:current={current === 3} on:click={() => (current = 3)} href="/about/">About</a>
-				</button>
-			</li>
-			<li>
-				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-					<a class:current={current === 4} on:click={() => (current = 4)} href="/services"
-						>Services</a
+					<a
+						class:current={current === 3}
+						on:click|preventDefault={() => {
+							current = 3
+							navigateTo('/about')
+						}}
+						href="/about">About</a
 					>
 				</button>
 			</li>
 			<li>
 				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-					<a class:current={current === 5} on:click={() => (current = 5)} href="/blog">Blog</a>
+					<a
+						class:current={current === 4}
+						on:click|preventDefault={() => {
+							current = 4
+							navigateTo('/services')
+						}}
+						href="/services">Services</a
+					>
 				</button>
 			</li>
 			<li>
 				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-					<a class:current={current === 6} on:click={() => (current = 6)} href="/">Home</a>
+					<a
+						class:current={current === 5}
+						on:click|preventDefault={() => {
+							current = 5
+							navigateTo('/blog')
+						}}
+						href="/blog/">Blog</a
+					>
+				</button>
+			</li>
+			<li>
+				<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
+					<a
+						class:current={current === 6}
+						on:click|preventDefault={() => {
+							current = 6
+							navigateTo('/')
+						}}
+						href="/">Home</a
+					>
 				</button>
 			</li>
 		</ul>
 		<button on:click={() => (isMenuOpen = false)} on:keydown={() => (isMenuOpen = false)}>
-			<a class:current={current === 7} on:click={() => (current = 7)} href="/signUp"> Login </a>
+			<a
+				class:current={current === 7}
+				on:click|preventDefault={() => {
+					current = 7
+					navigateTo('/signUp')
+				}}
+				href="/signUp"
+			>
+				Login
+			</a>
 		</button>
 	</nav>
 	<button on:click={toggleMenu} on:keydown={() => (isMenuOpen = false)}>
@@ -68,47 +119,80 @@
 	</button>
 </div>
 
+<!--svelte-ignore css-unused-selector -->
 <style>
 	.navbar {
-		background: var(--gradient_Alt);
+		background: linear-gradient(to right, var(--highlight), var(--back_Tre), hwb(187 5% 25%));
+		background-size: 400% 400%;
+		animation: gradientShift 20s ease-in-out infinite;
 		width: 100vw;
 		display: flex;
+		top: 0;
 		justify-content: space-between;
 		position: fixed;
 		height: 5rem;
 		z-index: 950;
-		transition: transform 0.2s ease-in-out;
-		border-bottom: 2px solid var(--highlight);
+		transition: transform 1.2s ease-in-out;
+		border-bottom: var(--bord);
+	}
+
+	@keyframes gradientShift {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
 	}
 
 	.navbar button {
 		all: unset;
 	}
 
-	/* .navbar .logo img {
-		width: 10vw;
-		padding: 1%;
-		margin: 1%;
-		border-radius: 8px;
-		box-shadow: 0 0 20px rgba(255, 119, 169, 0.5);
-	} */
-
 	.navbar a {
-		color: #f4f4f9;
-		font-size: 1.2rem;
+		color: var(--back_Alt);
+		text-shadow:
+			1px 1px 0 var(--highlight),
+			-1px -1px 0 var(--grabber);
 		text-decoration: none;
-		text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
 		transition:
 			color 0.2s,
 			text-shadow 0.2s;
 	}
 
+	/* /////// */
+
 	.navbar a:hover,
 	.navbar a:focus {
-		color: #00f4f9;
-		text-shadow: 0 0 10px rgba(0, 255, 255, 1);
+		color: var(--grabber);
+		text-shadow:
+			2px 0 var(--highlight),
+			-2px 0 var(--grabber);
+		animation: rgbSplit 1.2s infinite;
 	}
 
+	@keyframes rgbSplit {
+		0% {
+			text-shadow:
+				2px 0 var(--highlight),
+				-2px 0 var(--grabber);
+		}
+		50% {
+			text-shadow:
+				-2px 0 var(--highlight),
+				2px 0 var(--grabber);
+		}
+		100% {
+			text-shadow:
+				2px 0 var(--highlight),
+				-2px 0 var(--grabber);
+		}
+	}
+
+	/* ///// */
 	.navbar ul {
 		display: flex;
 		flex-direction: column;
@@ -117,25 +201,18 @@
 		gap: 1rem;
 		list-style: none;
 		margin: 0;
-		padding: 0;
-		font-size: 1.2rem;
-	}
-
-	.navbar ul li {
-		padding: 3% 0;
 	}
 
 	.navbar ul li button {
 		all: unset;
-		cursor: pointer;
 	}
 
 	.navbar .burger {
 		height: fit-content;
 		width: 100%;
-		background-color: transparent;
-		margin-right: 1rem;
 		display: flex;
+		background-color: transparent;
+		margin-left: 1rem;
 		align-items: center;
 		justify-content: center;
 	}
@@ -143,13 +220,12 @@
 	.navbar .burger:hover {
 		cursor: pointer;
 		transition: transform 0.1s ease-in-out;
-		transform: scale(1.2);
+		transform: scale(1.1);
 	}
 
 	.navbar .burger svg {
-		fill: #f4f4f9;
-		width: 42px;
-		height: 42px;
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 
 	nav {
@@ -163,8 +239,9 @@
 		left: 0;
 		background: var(--gradient_Alt);
 		width: 100%;
-		border-top: 2px solid var(--highlight);
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+		box-shadow: var(--box_Shadow);
+		border-bottom: var(--bord);
+		border-top: var(--bord);
 	}
 
 	.current::after {
@@ -174,7 +251,6 @@
 		left: 0;
 		width: 100%;
 		height: 2px;
-		background-color: var(--highlight);
 		box-shadow: 0 0 10px rgba(255, 119, 169, 0.8);
 	}
 
@@ -192,25 +268,22 @@
 			display: none;
 		}
 
-		/* .navbar .logo img {
-			width: 8vw;
-			margin-left: 1vw;
-		} */
-
 		.navbar ul {
 			flex-direction: row-reverse;
 			gap: 2rem;
 			margin: 0 15vw;
+
+			& li {
+				&:hover {
+					background: var(--back_Main);
+					padding: 1rem 0;
+				}
+			}
 		}
 	}
 
 	/* Larger screens */
 	@media only screen and (min-width: 1440px) {
-		/* .navbar .logo img {
-			width: 6vw;
-			margin-left: 1vw;
-		} */
-
 		.navbar ul {
 			gap: 3rem;
 			margin: 0 22vw;

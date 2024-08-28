@@ -1,6 +1,8 @@
 <script>
 	import Jax from '$lib/assets/img/eatho.jpg'
 	import Nextem from '$lib/assets/img/colabNlisten.jpg'
+	import { blur, fly } from 'svelte/transition'
+	import { cubicInOut } from 'svelte/easing'
 
 	import { onMount, onDestroy } from 'svelte'
 
@@ -19,11 +21,9 @@
 	function startRandomNumberGenerator() {
 		randomNumber = generateRandomNumber()
 		shouldBlink = randomNumber <= 150
-		console.log('Generated Number:', randomNumber)
 		const interval = setInterval(() => {
 			randomNumber = generateRandomNumber()
 			shouldBlink = randomNumber <= 150
-			console.log('Generated Number:', randomNumber)
 		}, 3000)
 
 		onDestroy(() => {
@@ -36,17 +36,21 @@
 	<title>About</title>
 </svelte:head>
 
-<h4>Hello :)</h4>
-
-<img class="leader" src={Nextem} alt="background" />
-
-<div class=" head_Line">
+<div
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: -50, opacity: 0.5 }}
+	class="head_Line"
+>
 	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">About</h1>
 </div>
 
-<figure class="img_Intro">
+<main
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 5 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: 0, opacity: 0.5 }}
+>
+	<img src={Nextem} alt="background" />
 	<article>
-		<p class="text_Box glass_Back">
+		<p class="glass_Back">
 			Wandering through the lush forests and foggy coastlines, they capture the essence of the
 			Pacific Northwest with a twist. Their camera is an extension of his imaginative mind, framing
 			the majestic beauty of nature with a splash of surreal, synthetic glow. Whether it's a
@@ -64,130 +68,31 @@
 			space where the boundaries of reality blur and the extraordinary becomes the norm.
 		</p>
 	</article>
-</figure>
+	<img src={Jax} alt="background" />
 
-<section>
-	<img class="backBack" src={Jax} alt="background" />
-	<p class=" cut_Box overLay glass_Back">
-		In a world that's constantly racing forward, they invite you to hit pause and step into his
-		vibrant, vaporwave wonderland. These photographs are not just images; they're
-		experiences—whimsical, nostalgic, and unapologetically fun.
-		<br /><br />
-		So, if you’re ready to see the Pacific Northwest like never before, bathed in the glow of a cyber
-		sunset and wrapped in the warmth of infectious curiosity, grab your windbreaker and your sense of
-		wonder. It's time for a photo shoot that transcends the ordinary and embraces the extraordinary.
-	</p>
-</section>
+	<article>
+		<p class="glass_Back">
+			In a world that's constantly racing forward, they invite you to hit pause and step into his
+			vibrant, vaporwave wonderland. These photographs are not just images; they're
+			experiences—whimsical, nostalgic, and unapologetically fun.
+			<br /><br />
+			So, if you’re ready to see the Pacific Northwest like never before, bathed in the glow of a cyber
+			sunset and wrapped in the warmth of infectious curiosity, grab your windbreaker and your sense
+			of wonder. It's time for a photo shoot that transcends the ordinary and embraces the extraordinary.
+		</p>
+	</article>
+</main>
 
 <!-- svelte-ignore css-unused-selector -->
 <style>
 	/* Phone size / base */
-	.leader {
-		object-fit: cover;
+	img {
 		width: 70vw;
 		margin: 5vh 15vw;
 
-		z-index: 995;
-	}
-
-	p {
-		color: var(--text_Main);
-		text-shadow: var(--text_Light);
-	}
-
-	.text_Block .overLay {
-		margin-top: -80vh;
-	}
-
-	.backBack {
-		object-fit: cover;
-		width: 70vw;
-		margin: 5vh 15vw;
-	}
-
-	.old_Vibe {
-		object-fit: cover;
-		width: 100vw;
-		margin: 0;
-		position: fixed;
-		opacity: 0.5;
-	}
-
-	/* 
-	 Tablet size 
-	@media only screen and (min-width: 426px) {
-		img_Intro img {
-			object-fit: cover;
-			width: 100vw;
-		}
-
-		h2 {
-			margin-top: 50vh;
-		}
-	}
-
-	 Laptop size 
-	@media only screen and (min-width: 769px) {
-		img_Intro img {
-			height: 100vh;
-		}
-
-		img_Intro .text_Block {
-			margin: -85vh 2vw 0 10vw;
-		}
-
-		img_Intro .text_Block .text_Box {
-			width: 80vw;
-			margin-top: 5vh;
-			z-index: 999;
-		}
-
-		.text_Box {
+		@media screen and (min-width: 768px) {
 			width: 40vw;
-			font-size: var(--f_m);
-		}
-
-		.text_Box {
-			margin-left: 5vw;
-		}
-
-		h2 {
-			margin: 20vh 0;
-		}
-
-		.wk {
-			margin-top: 35vh;
+			margin: 5vh 30vw;
 		}
 	}
-
-	Large Screen 
-	@media only screen and (min-width: 1440px) {
-		img_Intro img {
-			height: 100vh;
-		}
-
-		img_Intro .text_Block {
-			margin: -85vh 2vw 0 10vw;
-		}
-
-		img_Intro .text_Block .text_Box {
-			width: 80vw;
-			margin-top: 5vh;
-			z-index: 999;
-		}
-
-		.text_Block .backBack {
-			width: 100vw;
-			height: 110vh;
-			object-fit: cover;
-		}
-
-		.overLay {
-			margin-top: -50vh;
-		}
-
-		.wk {
-			margin-top: 60vh;
-		}
-	} */
 </style>

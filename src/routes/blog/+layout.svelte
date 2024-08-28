@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation'
+
 	let menuItems = ['Why', 'Recent', 'Library']
 	let selected = ''
 
@@ -62,30 +63,19 @@
 		color: var(--back_Main);
 	}
 
-	/* 
-@media (min-width: 980px) {
+	@media screen and (min-width: 768px) {
 		meni {
-			display: flex;
-
 			& ul {
-				position: fixed;
-				display: inline;
-				transform: rotate(0deg);
-				margin: 50vh 2vw;
-				width: 8vw;
-				border-right: 1px solid var(--back_Hallow);
+				margin: 50vh -1vw;
+				width: 12vw;
 
 				& li {
 					list-style: none;
 					cursor: pointer;
-					border-right: none;
+					padding: 0 2vw;
+					border-right: 1px solid var(--back_Hallow);
 				}
 			}
 		}
-
-		.selected {
-			background-color: var(--back_Alt);
-			color: var(--back_Main);
-		}
-	}  */
+	}
 </style>

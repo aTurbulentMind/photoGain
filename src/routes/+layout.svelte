@@ -35,6 +35,7 @@
 
 <Footer />
 
+<!--svelte-ignore css-unused-selector -->
 <style>
 	.old_Vibe {
 		object-fit: cover;

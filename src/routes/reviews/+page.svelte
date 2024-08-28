@@ -92,36 +92,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	/* .grid {
-		.card {
-			svg {
-				width: 40%;
-				margin: -50px 30%;
-			}
-
-			.card-title {
-				font-size: var(--f_m);
-			}
-
-			.body {
-				font-size: var(--font);
-			}
-		}
-	}
-
-	@media only screen and (min-width: 980px) {
-		.grid {
-			.card {
-				.card-title {
-					font-size: var(--f_lg);
-				}
-
-				.body {
-					font-size: var(--font);
-				}
-			}
-		}
-	} */
-</style>

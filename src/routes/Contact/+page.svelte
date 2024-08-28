@@ -1,8 +1,9 @@
 <script>
 	import Phone_Svg from '$lib/svg/phone_Svg.svelte'
 	import Mail_Svg from '$lib/svg/mail_Svg.svelte'
-	import Support_Svg from '$lib/svg/crown_Svg.svelte'
 	import Supp_Svg from '$lib/svg/suppy_Svg.svelte'
+	import { blur, fly } from 'svelte/transition'
+	import { cubicInOut } from 'svelte/easing'
 
 	import { onMount, onDestroy } from 'svelte'
 
@@ -21,11 +22,9 @@
 	function startRandomNumberGenerator() {
 		randomNumber = generateRandomNumber()
 		shouldBlink = randomNumber <= 150
-		console.log('Generated Number:', randomNumber)
 		const interval = setInterval(() => {
 			randomNumber = generateRandomNumber()
 			shouldBlink = randomNumber <= 150
-			console.log('Generated Number:', randomNumber)
 		}, 3000)
 
 		onDestroy(() => {
@@ -45,17 +44,21 @@
 
 		return `${month}/${day}/${year} ${hours}:${minutes}`
 	}
-
-	console.log(getCurrentDateTime()) // This will print the current date and time in MM/DD/YYYY HH:MM:SS format
 </script>
 
-<h4>Hello :)</h4>
-
-<div class=" head_Line">
+<div
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 3 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: -50, opacity: 0.5 }}
+	class="head_Line"
+>
 	<h1 class=" neon-text {shouldBlink ? 'blink' : ''}">Contact</h1>
 </div>
 
-<div class="grid">
+<div
+	class="grid"
+	in:blur={{ delay: 100, duration: 300, easing: cubicInOut, amount: 3 }}
+	out:fly={{ delay: 200, duration: 300, easing: cubicInOut, x: 100, y: 0, opacity: 0.5 }}
+>
 	<div class="card">
 		<h2 class="card-title">Call</h2>
 		<svg><Phone_Svg /></svg>
@@ -111,59 +114,27 @@
 	</div>
 </div>
 
+<!--svelte-ignore css-unused-selector -->
 <style>
 	.grid {
-		border: var(--bord);
+		width: 90vw;
+		margin: 1vh auto;
 
 		& .card {
-			box-shadow: none;
-
-			& .card-title {
-				font-size: var(--f_lg);
-			}
-
 			& svg {
 				width: 25%;
 				margin: -50px 40% 0 40%;
 			}
 		}
 
-		& ul li {
-			list-style-type: none;
-			margin: 2vh 0;
+		@media screen and (min-width: 768px) {
+			width: 80vw;
 		}
 	}
 
-	/* @media only screen and (min-width: 769px) {
-		.grid {
-			grid-template-columns: 1fr 1fr;
-			gap: var(--pad_xl);
-			position: relative;
-			margin-bottom: 6.9vh;
+	h4 {
+		@media screen and (min-width: 768px) {
+			display: none;
 		}
-
-		.grid .card svg {
-			width: 12vw;
-			height: 7vh;
-			margin: 2vh 10vw;
-		}
-
-		.grid .card .card-title {
-			font-size: var(--f_lg);
-			margin: var(--marg);
-		}
-
-		.grid .card .body {
-			font-size: var(--f_m);
-		}
-
-		.head_Line {
-			margin: 8vh 0 -13.7vh 45vw;
-		}
-
-		.head_Line h1 {
-			padding: 0;
-			width: fit-content;
-		}
-	} */
+	}
 </style>

@@ -64,6 +64,7 @@
 	</div>
 </form>
 
+<!--svelte-ignore css-unused-selector -->
 <style>
 	.win_95 {
 		height: 70vh;
